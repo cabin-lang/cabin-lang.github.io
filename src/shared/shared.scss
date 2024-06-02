@@ -1,0 +1,35 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font: inherit;
+	font-family: 'Roboto';
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+nav {
+	display: flex;
+	font-size: 2rem;
+	gap: 3rem;
+	justify-content: end;
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+
+	>*:last-child {
+		padding-right: 3rem;
+	}
+
+	>* {
+		color: black;
+	}
+}
+
+button {
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+}
