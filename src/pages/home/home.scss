@@ -3,47 +3,66 @@ main {
 	flex-direction: column;
 	align-items: center;
 
+	// Title
 	>h1 {
 		font-size: 8rem;
 		font-weight: bold;
 	}
 
+	// Description
 	>p {
 		font-size: 2rem;
 		width: 50%;
 		text-align: center;
 	}
 
+	// Installation
 	>section {
 		margin-top: 5rem;
 		display: flex;
 		flex-direction: column;
 		align-items: start;
 
-		>button {
-			font-size: 1.5rem;
-			padding-left: 1em;
-			padding-right: 1em;
-			padding-top: 0.5em;
-			padding-bottom: 0.5em;
-			background-color: #0000AA;
-			color: white;
-			border-top-left-radius: 1rem;
-			border-top-right-radius: 1rem;
+		>div {
+			display: flex;
 
-			>img {
-				width: 2rem;
-				height: 2rem;
-				padding-left: 0.5rem;
-				position: relative;
-				top: 0.5rem;
+			// Installation types
+			>button {
+				font-size: 1rem;
+				padding-left: 1em;
+				padding-right: 0.7em;
+				padding-top: 0.5em;
+				padding-bottom: 0.5em;
+				background-color: #282C34;
+				color: white;
+				border-top-left-radius: 0.5rem;
+				border-top-right-radius: 0.5rem;
+				display: flex;
+				align-items: center;
+
+				&.inactive {
+					background-color: #191D29
+				}
+
+				// Cargo icon
+				>img {
+					width: 1.5rem;
+					height: 1.5rem;
+					padding-left: 0.5rem;
+
+					&.windows {
+						width: 2.5rem;
+						height: 2.5rem;
+					}
+				}
 			}
 		}
 
+		// Installation Command
 		>code {
 			font-family: 'Monospace';
 			color: white;
-			background: linear-gradient(135deg, #0000AA, #000000);
+			background: #282C34;
 			padding: 1em;
 			font-size: 1.5rem;
 			border-radius: 1rem;
@@ -51,6 +70,7 @@ main {
 			padding-right: 10rem;
 			position: relative;
 
+			// Copy Icon
 			>.icon {
 				width: 2rem;
 				height: 2rem;
@@ -59,7 +79,7 @@ main {
 				position: absolute;
 				top: 1rem;
 				right: 1rem;
-				filter: invert(100%) brightness(50%);
+				filter: invert(100%) brightness(70%);
 				cursor: pointer;
 			}
 		}
