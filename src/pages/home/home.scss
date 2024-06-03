@@ -1,12 +1,15 @@
-main {
+.hero {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	height: 100vh;
+	font-family: 'Nunito';
+	margin-top: 8rem;
 
 	// Title
 	>h1 {
 		font-size: 8rem;
-		font-weight: bold;
+		font-weight: 900;
 	}
 
 	// Description
@@ -72,6 +75,7 @@ main {
 
 			// Copy Icon
 			>.icon {
+				pointer-events: none;
 				width: 2rem;
 				height: 2rem;
 				background-image: url("https://static.thenounproject.com/png/361082-200.png");
@@ -84,5 +88,33 @@ main {
 			}
 		}
 	}
+}
 
+.demo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Nunito';
+	height: 100vh;
+
+	h2 {
+		font-size: 7rem;
+		padding-bottom: 2rem;
+		font-weight: 900;
+	}
+
+	.demo-body {
+		display: flex;
+		padding-left: 10rem;
+		padding-right: 10rem;
+		gap: 5rem;
+		align-items: center;
+
+		>p {
+			font-size: 1.75rem;
+			position: relative;
+			bottom: 3rem;
+		}
+	}
 }

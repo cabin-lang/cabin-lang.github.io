@@ -1,17 +1,27 @@
 const tokenTypes = {
 	keyword: /^\b(foreach|in|if|otherwise|and)\b/,
-	number: /-?\d+(\.\d+)?/,
-	identifier: /[a-z_]\w*/,
-	group: /[A-Z_]\w*/,
-	function: /^[a-z_]\w*\(/,
-	operator: /^\.\{\}\(\)=/,
-	whitespace: /^\s\n\r\t /
+	number: /^(-?\d+(\.\d+)?)/,
+	string: /^("[^"]+")/m,
+	function: /^([a-z_]\w*)\(/,
+	identifier: /^([a-z_]\w*)/,
+	group: /^([A-Z_]\w*)/,
+	operator: /^([\.\{\}\(\);:=]+)/,
+	comment: /^(\/\/[^\r\n]+)/,
+	whitespace: /^([\s\r\n\t ]+)/
 }
 
 type Theme = { [K in TokenType]: string };
 
-const onedark: Theme = {
-
+export const onedark: Theme = {
+	group: "#E5C07B",
+	identifier: "#E06C75",
+	string: "#98C379",
+	operator: "lightgray",
+	function: "#61AFEF",
+	keyword: "#C678DD",
+	number: "#D19A66",
+	comment: "#AAAAAA",
+	whitespace: "white"
 };
 
 type TokenType = keyof typeof tokenTypes;
@@ -27,8 +37,8 @@ function tokenize(code: string) {
 		for (let [tokenType, pattern] of Object.entries(tokenTypes)) {
 			let match = pattern.exec(code);
 			if (match) {
-				tokens.push({ tokenType: tokenType as TokenType, value: match[0] });
-				code = code.substring(match[0].length);
+				tokens.push({ tokenType: tokenType as TokenType, value: match[1] });
+				code = code.substring(match[1].length);
 				match_found = true;
 				break;
 			}
@@ -42,9 +52,10 @@ function tokenize(code: string) {
 	return tokens;
 }
 
-function colored(code: string, theme: Theme): HTMLElement {
-	let tokens = tokenize(code);
+export function syntaxHighlight(code: string, theme: Theme): HTMLElement {
+	let tokens = tokenize(code.trim().replace(/\t/g, "    "));
 	let parent = document.createElement("pre");
+	parent.classList.add("cabin-code");
 	tokens.forEach(token => {
 		let tokenElement = document.createElement("span");
 		tokenElement.innerHTML = token.value;

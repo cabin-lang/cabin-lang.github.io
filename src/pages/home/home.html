@@ -2,53 +2,78 @@
 <html lang="en">
 
 <head>
+	<!-- Metadata -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cabin | Home</title>
 
+	<!-- Styles -->
 	<link href="../../shared/shared.scss" rel="stylesheet" />
 	<link href="./home.scss" rel="stylesheet" />
 
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+		rel="stylesheet">
+
+	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script defer src="./home.ts" type="module"></script>
-
-	<title>Document</title>
 </head>
 
 <body>
 	<nav>
-		<a href="#">Home</a>
+		<a href="#">Tutorial</a>
 		<a href="#">Documentation</a>
 		<a href="#">Integrations</a>
 		<a href="https://github.com/cabin-lang/cabin">Source</a>
 	</nav>
 
 	<main>
-		<h1>Cabin</h1>
-		<p>
-			The simple, safe, and speedy language for the developer who wants to <strong>Get Stuff Done&trade;</strong>
-		</p>
+		<article class="hero">
+			<h1>Cabin</h1>
+			<p>
+				The simple, safe, and speedy language for the developer who wants to <strong>Get Stuff
+					Done&trade;</strong>
+			</p>
 
-		<section>
-			<div class="installation-types">
-				<button class="cargo-installation">Cargo<img
-						src="https://foundation.rust-lang.org/img/cargo.png" /></button>
-				<button class="windows-installation">Exe<img class="windows"
-						src="https://365cloudstore.com/wp-content/uploads/2023/02/windows-11-500x500-01.png" /></button>
-				<button class="linux-installation">Package<img
-						src="https://cdn.icon-icons.com/icons2/2235/PNG/512/linux_os_logo_icon_134670.png" /></button>
-			</div>
-			<code>
+			<section>
+				<div class="installation-types">
+					<button class="cargo-installation">Cargo<img
+							src="https://foundation.rust-lang.org/img/cargo.png" /></button>
+					<button class="windows-installation">Exe<img class="windows"
+							src="https://365cloudstore.com/wp-content/uploads/2023/02/windows-11-500x500-01.png" /></button>
+					<button class="linux-installation">Package<img
+							src="https://cdn.icon-icons.com/icons2/2235/PNG/512/linux_os_logo_icon_134670.png" /></button>
+				</div>
+				<code class="install-command">
 				$ cargo install cabin-language
 				<div class="icon" title="Copy to clipboard" onclick='navigator.clipboard.writeText("cargo install cabin-language");'></div>
 			</code>
-		</section>
+			</section>
+		</article>
 
 
-		<h2>Simple</h2>
+		<article class="demo">
+			<h2>Simple</h2>
+			<section class="demo-body">
+				<p>
+					Cabin is designed to be as simple as possible. No special exceptions, no crazy syntax, no hidden
+					control flow. Most importantly, the code <i>does what you'd expect it to do</i>.
 
-		<pre>
-			<code>
+					<br /><br />
+
+					Cabin's philosophy is that stupidly obvious solutions are better than clever tricky ones.
+
+					<br /><br />
+
+					Cabin code often reads exactly how you would say it in English.
+				</p>
+				<pre class="cabin-code">
+// FizzBuzz in Cabin
+
 foreach number in 1.to(100) {
 	if number.mod(3) = 0 and number.mod(5) = 0 {
 		terminal.print("FizzBuzz");
@@ -66,8 +91,9 @@ foreach number in 1.to(100) {
 		terminal.print(number);
 	};
 }
-			</code>
-		</pre>
+				</pre>
+			</section>
+		</article>
 	</main>
 
 </body>

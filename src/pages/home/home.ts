@@ -1,3 +1,5 @@
+import { onedark, syntaxHighlight } from "../../shared/code";
+
 $(".installation-types").children().on("click", event => {
 	$(".installation-types").children().addClass("inactive");
 	$(event.target).removeClass("inactive");
@@ -20,6 +22,7 @@ function selectOs(os: Os): void {
 			break;
 		case "linux":
 			$(".linux-installation").removeClass(".inactive");
+			$(".install-command").text("sudo apt install cabin-language");
 			break;
 		case "unknown":
 			$(".cargo-installation").removeClass(".inactive");
@@ -28,3 +31,5 @@ function selectOs(os: Os): void {
 }
 
 selectOs(getOs());
+
+$(".cabin-code").replaceWith(syntaxHighlight($(".cabin-code").html(), onedark));
