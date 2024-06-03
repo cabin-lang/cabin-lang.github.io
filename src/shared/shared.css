@@ -3,7 +3,6 @@
 	padding: 0px;
 	font-family: inherit;
 	font-size: inherit;
-	font-weight: normal;
 	background: transparent;
 	border: none;
 	outline: none;
@@ -41,6 +40,8 @@ nav {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	font-family: 'Nunito';
+	position: absolute;
+	top: 0px;
 
 	>*:last-child {
 		padding-right: 3rem;

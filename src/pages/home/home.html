@@ -8,8 +8,9 @@
 	<title>Cabin | Home</title>
 
 	<!-- Styles -->
-	<link href="../../shared/shared.scss" rel="stylesheet" />
-	<link href="./home.scss" rel="stylesheet" />
+	<link href="../../shared/shared.css" rel="stylesheet" />
+	<link href="./home.css" rel="stylesheet" />
+	<link href="https://avatars.githubusercontent.com/u/168129509?s=200&v=4" rel="icon" />
 
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,20 +42,21 @@
 
 			<section>
 				<div class="installation-types">
-					<button class="cargo-installation">Cargo<img
+					<button class="cargo-installation" id="unknown">Cargo<img
 							src="https://foundation.rust-lang.org/img/cargo.png" /></button>
-					<button class="windows-installation">Exe<img class="windows"
+					<button class="windows-installation" id="windows">Exe<img class="windows"
 							src="https://365cloudstore.com/wp-content/uploads/2023/02/windows-11-500x500-01.png" /></button>
-					<button class="linux-installation">Package<img
+					<button class="mac-installation" id="mac">Homebrew<img
+							src="https://cdn4.iconfinder.com/data/icons/leto-most-searched-mix-8/64/__apple_mac_logo-512.png" /></button>
+					<button class="linux-installation" id="linux">Package<img
 							src="https://cdn.icon-icons.com/icons2/2235/PNG/512/linux_os_logo_icon_134670.png" /></button>
 				</div>
 				<code class="install-command">
 				$ cargo install cabin-language
-				<div class="icon" title="Copy to clipboard" onclick='navigator.clipboard.writeText("cargo install cabin-language");'></div>
+				<div class="copy-icon" title="Copy to clipboard" onclick='navigator.clipboard.writeText("cargo install cabin-language");'></div>
 			</code>
 			</section>
 		</article>
-
 
 		<article class="demo">
 			<h2>Simple</h2>

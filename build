@@ -1,0 +1,11 @@
+#!/bin/sh
+
+rm -rf ./dist/*
+mkdir -p ./dist
+cp -r src ./dist
+cp tsconfig.json ./dist
+cd ./dist
+bunx tsc
+for file in **/*.ts ; do
+	rm file
+done

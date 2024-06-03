@@ -5,21 +5,22 @@
 	height: 100vh;
 	font-family: 'Nunito';
 	margin-top: 8rem;
+	background: #303544;
+	color: white;
 
-	// Title
+	/* Title */
 	>h1 {
 		font-size: 8rem;
-		font-weight: 900;
 	}
 
-	// Description
+	/* Description */
 	>p {
 		font-size: 2rem;
 		width: 50%;
 		text-align: center;
 	}
 
-	// Installation
+	/* Installation */
 	>section {
 		margin-top: 5rem;
 		display: flex;
@@ -29,7 +30,7 @@
 		>div {
 			display: flex;
 
-			// Installation types
+			/* Installation types */
 			>button {
 				font-size: 1rem;
 				padding-left: 1em;
@@ -47,11 +48,12 @@
 					background-color: #191D29
 				}
 
-				// Cargo icon
+				/* Cargo icon */
 				>img {
 					width: 1.5rem;
 					height: 1.5rem;
 					padding-left: 0.5rem;
+					pointer-events: none;
 
 					&.windows {
 						width: 2.5rem;
@@ -61,7 +63,7 @@
 			}
 		}
 
-		// Installation Command
+		/* Installation Command */
 		>code {
 			font-family: 'Monospace';
 			color: white;
@@ -70,11 +72,11 @@
 			font-size: 1.5rem;
 			border-radius: 1rem;
 			border-top-left-radius: 0px;
-			padding-right: 10rem;
+			width: 40rem;
 			position: relative;
 
-			// Copy Icon
-			>.icon {
+			/* Copy Icon */
+			>.copy-icon {
 				pointer-events: none;
 				width: 2rem;
 				height: 2rem;
