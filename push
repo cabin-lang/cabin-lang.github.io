@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Warning - this is the most silly and hacked-together nonsense on the planet - I'm not a web developer!
+
+set -e
+
+green="\033[1;32m"
+white="\033[0;37m"
+
+echo -e "${green}Building${white} cabin-website..."
+
+# Clean dist/
+echo -en "    ${green}Cleaning${white} output directory..."
+rm -rf ./dist/* 2>/dev/null
+echo -e " ${green}Done!"
+
+# Move relevant files into dist/
+echo -en "    ${green}Copying${white} source files..."
+mkdir -p ./dist
+cp -r src ./dist
+cp tsconfig.json ./dist
+cp index.html ./dist
+echo -e " ${green}Done!"
+
+# Compile TypeScript
+echo -en "    ${green}Compiling${white} TypeScript..."
+cd ./dist
+bunx tsc
+echo -e " ${green}Done!"
+rm tsconfig.json
+
+# Remove TS files
+echo -e "    ${green}Removing${white} TypeScript files..."
+find . -name '*.ts' -type f | while read typescript_file ; do
+	echo -en "        ${green}Removing${white} \"$typescript_file\"..."
+	rm $typescript_file
+	find . -name '*.html' -type f | while read html_file ; do
+		basename=${typescript_file##*/}
+		basename=${basename%.ts}
+		sed -i "s@$basename.ts@$basename.js@g" $html_file
+	done
+	echo -e " ${green}Done!"
+done
+echo -e "    ${green}Done!${white}"
+echo -e "${green}Done!${white}"
+cd ..
+
+# Push to GitHub
+echo -e "${green}Pushing${white} to GitHub..."
+git push
+git subtree push --prefix ./dist origin build
+echo -e "${green}Done!${white}"

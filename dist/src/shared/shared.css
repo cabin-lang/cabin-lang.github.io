@@ -1,0 +1,61 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: inherit;
+	font-size: inherit;
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+.cabin-code {
+	background-color: #282C34;
+	font-family: 'Monospace';
+	padding: 3rem;
+	font-size: 1.25rem;
+	border-radius: 0.5rem;
+	position: relative;
+
+	&::before {
+		position: absolute;
+		content: '';
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		right: -0.5rem;
+		bottom: -0.5rem;
+		background-color: #131820;
+		border-radius: 0.5rem;
+	}
+
+	margin-bottom: 3rem;
+}
+
+nav {
+	display: flex;
+	font-size: 2rem;
+	gap: 3rem;
+	justify-content: end;
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	font-family: 'Nunito';
+	position: absolute;
+	top: 0px;
+
+	>*:last-child {
+		padding-right: 3rem;
+	}
+
+	>* {
+		color: black;
+	}
+}
+
+button {
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+}
