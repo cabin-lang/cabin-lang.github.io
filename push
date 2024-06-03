@@ -48,5 +48,5 @@ cd ..
 # Push to GitHub
 echo -e "${green}Pushing${white} to GitHub..."
 git push
-git subtree push --prefix ./dist origin build
+git subtree push --prefix dist origin build
 echo -e "${green}Done!${white}"
