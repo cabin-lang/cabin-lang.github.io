@@ -41,12 +41,23 @@ find . -name '*.ts' -type f | while read typescript_file ; do
 	done
 	echo -e " ${green}Done!"
 done
+
+# Fix JS Imports
+echo -e "    ${green}Fixing${white} JavaScript imports..."
+find ./src -name '*.js' -type f | while read javascript_file ; do
+	echo -en "        ${green}Fixing${white} imports for $javascript_file..."
+	sed -iE "s@(\bfrom\s\s*[\"'\`]\..*)([\"'\`])@\1.js\2@g" "$javascript_file"
+	echo -e " ${green}Done!${white}"
+done
+echo -e "    ${green}Done!${white}"
+
+# Finish Build
 echo -e "    ${green}Done!${white}"
 echo -e "${green}Done!${white}"
 cd ..
 
 # Push to GitHub
 echo -e "${green}Pushing${white} to GitHub..."
-git push
-git subtree push --prefix dist origin build
+#git push
+#git subtree push --prefix dist origin build
 echo -e "${green}Done!${white}"

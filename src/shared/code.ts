@@ -1,11 +1,11 @@
 const tokenTypes = {
-	keyword: /^\b(foreach|in|if|otherwise|and)\b/,
+	keyword: /^\b(editable|it|let|is|or|group|either|foreach|in|if|otherwise|and)\b/,
 	number: /^(-?\d+(\.\d+)?)/,
 	string: /^("[^"]+")/m,
 	function: /^([a-z_]\w*)\(/,
 	identifier: /^([a-z_]\w*)/,
 	group: /^([A-Z_]\w*)/,
-	operator: /^([\.\{\}\(\);:=]+)/,
+	operator: /^([\.\{\}\(\);:=\|\[\]]+)/,
 	comment: /^(\/\/[^\r\n]+)/,
 	whitespace: /^([\s\r\n\t ]+)/
 }
@@ -52,8 +52,21 @@ function tokenize(code: string) {
 	return tokens;
 }
 
+function unindent(text: string): string {
+	text = text.replace(/\t/g, "    ");
+	let max_indent = Infinity;
+	let lines = text.split(/\r?\n/g);
+	for (let line of lines.filter(line => !/^\s*$/.test(line))) {
+		let leading_whitespace = /^\s*/.exec(line)![0].length;
+		if (leading_whitespace > 0) {
+			max_indent = Math.min(leading_whitespace, max_indent);
+		}
+	}
+	return lines.map(line => line.substring(max_indent)).join("\n");
+}
+
 export function syntaxHighlight(code: string, theme: Theme): HTMLElement {
-	let tokens = tokenize(code.trim().replace(/\t/g, "    "));
+	let tokens = tokenize(unindent(code));
 	let parent = document.createElement("pre");
 	parent.classList.add("cabin-code");
 	tokens.forEach(token => {
@@ -64,3 +77,7 @@ export function syntaxHighlight(code: string, theme: Theme): HTMLElement {
 	});
 	return parent;
 }
+
+$(".cabin-code").each((_index, element) => {
+	element.replaceWith(syntaxHighlight(element.innerHTML, onedark));
+});

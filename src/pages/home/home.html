@@ -23,6 +23,7 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script defer src="./home.ts" type="module"></script>
+	<script defer src="../../shared/code.ts" type="module"></script>
 </head>
 
 <body>
@@ -43,17 +44,27 @@
 
 			<section>
 				<div class="installation-types">
-					<button class="cargo-installation" id="unknown">Cargo<img
-							src="https://foundation.rust-lang.org/img/cargo.png" /></button>
-					<button class="windows-installation" id="windows">Exe<img class="windows"
-							src="https://365cloudstore.com/wp-content/uploads/2023/02/windows-11-500x500-01.png" /></button>
-					<button class="mac-installation" id="mac">Homebrew<img
-							src="https://cdn4.iconfinder.com/data/icons/leto-most-searched-mix-8/64/__apple_mac_logo-512.png" /></button>
-					<button class="linux-installation" id="linux">Package<img
-							src="https://cdn.icon-icons.com/icons2/2235/PNG/512/linux_os_logo_icon_134670.png" /></button>
+					<button class="cargo-installation" id="unknown">
+						Cargo
+						<img src="https://foundation.rust-lang.org/img/cargo.png" />
+					</button>
+					<button class="windows-installation" id="windows">
+						Exe
+						<img class="windows"
+							src="https://365cloudstore.com/wp-content/uploads/2023/02/windows-11-500x500-01.png" />
+					</button>
+					<button class="mac-installation" id="mac">
+						Homebrew
+						<img
+							src="https://cdn4.iconfinder.com/data/icons/leto-most-searched-mix-8/64/__apple_mac_logo-512.png" />
+					</button>
+					<button class="linux-installation" id="linux">
+						Package
+						<img src="https://cdn.icon-icons.com/icons2/2235/PNG/512/linux_os_logo_icon_134670.png" />
+					</button>
 				</div>
 				<code class="install-command">
-				$ cargo install cabin-language
+					$ cargo install cabin-language
 				<div class="copy-icon" title="Copy to clipboard" onclick='navigator.clipboard.writeText("cargo install cabin-language");'></div>
 			</code>
 			</section>

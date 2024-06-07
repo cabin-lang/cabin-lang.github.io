@@ -1,5 +1,3 @@
-import { onedark, syntaxHighlight } from "../../shared/code";
-
 $(".installation-types").children().on("click", event => {
 	selectOs(event.target.id as Os);
 });
@@ -40,5 +38,3 @@ function selectOs(os: Os): void {
 }
 
 selectOs(getOs());
-
-$(".cabin-code").replaceWith(syntaxHighlight($(".cabin-code").html(), onedark));

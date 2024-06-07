@@ -8,6 +8,10 @@
 	outline: none;
 }
 
+li {
+	margin-left: 2rem;
+}
+
 .cabin-code {
 	background-color: #282C34;
 	font-family: 'Monospace';
@@ -15,6 +19,7 @@
 	font-size: 1.25rem;
 	border-radius: 0.5rem;
 	position: relative;
+	margin-bottom: 3rem;
 
 	&::before {
 		position: absolute;
@@ -27,8 +32,6 @@
 		background-color: #131820;
 		border-radius: 0.5rem;
 	}
-
-	margin-bottom: 3rem;
 }
 
 nav {
@@ -48,7 +51,7 @@ nav {
 	}
 
 	>* {
-		color: black;
+		color: white;
 	}
 }
 
