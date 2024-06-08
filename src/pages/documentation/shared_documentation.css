@@ -1,7 +1,4 @@
-p,
-h1,
-h2,
-h3 {
+*:not(code, pre) {
 	font-family: 'Nunito';
 }
 
@@ -17,6 +14,10 @@ h3 {
 	font-size: 1.25rem;
 }
 
+body {
+	background-color: #282C34
+}
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -25,7 +26,9 @@ main {
 	padding-top: 3rem;
 	background-color: #393D50;
 	color: white;
-	margin-left: 20%;
+	margin-left: 22%;
+	position: relative;
+	top: 4rem;
 
 	h2 {
 		padding-top: 2rem;
@@ -90,7 +93,7 @@ hr {
 	border-radius: 100vmax;
 }
 
-.cabin-code {
+.code {
 	font-size: 1rem;
 	padding: 1rem;
 	margin-bottom: 0px;

@@ -12,7 +12,7 @@ li {
 	margin-left: 2rem;
 }
 
-.cabin-code {
+.code {
 	background-color: #282C34;
 	font-family: 'Monospace';
 	padding: 3rem;
@@ -36,7 +36,7 @@ li {
 
 nav {
 	display: flex;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	gap: 3rem;
 	justify-content: end;
 	width: 100%;
@@ -46,12 +46,40 @@ nav {
 	position: absolute;
 	top: 0px;
 
-	>*:last-child {
-		padding-right: 3rem;
-	}
-
 	>* {
 		color: white;
+
+		&:last-child {
+			width: 2rem;
+			height: 2rem;
+			padding-right: 1rem;
+			cursor: pointer;
+		}
+
+		img {
+			width: 1rem;
+			height: 1rem;
+			padding-left: 1rem
+		}
+	}
+
+}
+
+.page-settings {
+	display: none;
+	position: absolute;
+	z-index: 2;
+	top: 0px;
+	right: 0px;
+	color: white;
+	background-color: #282C34;
+	padding: 2rem;
+	border-radius: 1rem;
+	box-shadow: 0px 0px 20px black;
+	top: 4rem;
+
+	h1 {
+		font-size: 2rem;
 	}
 }
 

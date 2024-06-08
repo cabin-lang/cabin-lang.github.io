@@ -17,37 +17,60 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script defer src="../../shared/code.ts" type="module"></script>
+	<script defer src="../../shared/navbar.ts" type="module"></script>
 	<script defer src="./shared_documentation.ts" type="module"></script>
 
-	<title>Document</title>
+	<title>Types | Cabin Documentation</title>
 </head>
 
 <body>
+	<nav>
+		<a href="#">Documentation</a>
+		<a href="#">Tooling</a>
+		<a href="https://github.com/cabin-lang/cabin" target="_blank">Source<img
+				src="https://static-00.iconduck.com/assets.00/external-link-icon-2048x2048-wo7lfgrz.png" /></a>
+		<img class="settings-icon"
+			src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Gear_icon-72a7cf.svg/2048px-Gear_icon-72a7cf.svg.png" />
+
+	</nav>
+
+	<section class="page-settings">
+		<h1>Page Preferences</h1>
+
+		Page Theme
+
+		Code Theme
+
+	</section>
+
 	<section class="sidebar">
 		<h1>Index</h1>
 		<ul>
 			<li>
-				<h2>Introduction</h2>
+				<h2><a href="./introduction.html#introduction">Introduction</a></h2>
 				<ul>
 					<li>
-						<h3>Purpose & Philosophy</h3>
+						<h3><a href="./introduction.html#purpose-and-philosophy">Purpose & Philosophy</a></h3>
 					</li>
 					<li>
-						<h3>Installation</h3>
+						<h3><a href="./introduction.html#installation">Installation</a></h3>
 					</li>
 					<li>
-						<h3>Your First Program</h3>
+						<h3><a href="./introduction.html#your-first-program">Your First Program</a></h3>
 					</li>
 					<li>
-						<h3>Compiler Commands</h3>
+						<h3><a href="./introduction.html#compiler-commands">Compiler Commands</a></h3>
+					</li>
+					<li>
+						<h3><a href="./introduction.html#project-configuration">Project Configuration</a></h3>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<h2>Declarations</h2>
+				<h2><a href="./declarations.html#declarations">Declarations</a></h2>
 				<ul>
 					<li>
-						<h3>Names</h3>
+						<h3><a href="./declarations.html#names">Names</a></h3>
 					</li>
 					<li>
 						<h3>Objects</h3>
@@ -105,6 +128,23 @@
 					</li>
 					<li>
 						<h3><a href="./types.html#convention-notes">Convention Notes</a></h3>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h2>Control Flow</h2>
+				<ul>
+					<li>
+						<h3>Blocks & Is Statements</h3>
+					</li>
+					<li>
+						<h3>If Expressions</h3>
+					</li>
+					<li>
+						<h3>For Loops</h3>
+					</li>
+					<li>
+						<h3>While Loops</h3>
 					</li>
 				</ul>
 			</li>
@@ -167,7 +207,7 @@
 			clear:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let message: Text = "Hello world!";
 		</pre>
 
@@ -179,7 +219,7 @@
 			information about it (its properties) is known at compile-time.
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let get_message_type = function {
 				it is Text;
 			};
@@ -204,7 +244,7 @@
 			edited. For example:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let message: editable Text = "Hello world!";
 			message = "Goodbye world!"; // This is now valid!
 		</pre>
@@ -219,7 +259,7 @@
 			Here's an example:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let message = "Hello world!"; // This infers the type!
 		</pre>
 
@@ -229,7 +269,7 @@
 			names can still be inferred:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let message: editable = "Hello world!"; // This is valid!
 		</pre>
 
@@ -243,7 +283,7 @@
 			example:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let message_1: Text = "Hello world!";
 			let message_2: is "Hello world!" = "Hello world!";
 		</pre>
@@ -252,8 +292,8 @@
 			These are both valid! This may seem useless, but it may make more sense when we talk about union types:
 		</p>
 
-		<pre class="cabin-code">
-			let message: editable is "Hello world!" | is "Goodbye world!"= "Hello world!";
+		<pre class="code" data-language="cabin">
+			let message: editable either { is "Hello world!", is "Goodbye world!" } = "Hello world!";
 			message = "Goodbye world!"; // valid!
 			message = "How are you world?"; // Not valid!
 		</pre>
@@ -266,7 +306,7 @@
 			means that if you have a function and name like so:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let print = function(text: Text) {
 				terminal.print(text);
 			};
@@ -290,7 +330,7 @@
 			infer the type as the <code>is</code> type of the value. For example, if you declare a name as follows:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let message = "Hello world!";
 		</pre>
 
@@ -306,7 +346,7 @@
 			possible, which is the <code>is</code> value. In other words, for any declaration:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let name = value;
 		</pre>
 
@@ -325,7 +365,7 @@
 			its value elsewhere if it wasn't copied. For example:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let text: editable = "Hello world!";
 
 			let texts: editable = [];
@@ -339,7 +379,7 @@
 			This also applies to function return values, i.e.,
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let generate = function(): Text {
 				let text = "Hello world!";
 				texts.append(text);
@@ -355,7 +395,7 @@
 			value, which <code>texts</code> expects to be unchanging. However, consider a case like this:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let generate = function(): Text {
 				it is "Hello world!";
 			};
@@ -369,7 +409,7 @@
 			For this reason, it's convention to return an `editable` value whenever you're returning an unstored value:
 		</p>
 
-		<pre class="cabin-code">
+		<pre class="code" data-language="cabin">
 			let generate = function(): editable Text {
 				it is "Hello world!";
 			};

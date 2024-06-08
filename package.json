@@ -1,17 +1,19 @@
 {
-	"name": "cabin-website",
-	"private": true,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite"
-	},
-	"devDependencies": {
-		"sass": "^1.77.4",
-		"typescript": "^5.4.5",
-		"vite": "^5.2.0"
-	},
-	"dependencies": {
-		"@types/jquery": "^3.5.30"
-	}
+  "name": "cabin-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.3",
+    "@types/jquery": "^3.5.30",
+    "acorn": "^8.11.3",
+    "acorn-walk": "^8.3.2",
+    "escodegen": "^2.1.0",
+    "sass": "^1.77.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0"
+  }
 }
