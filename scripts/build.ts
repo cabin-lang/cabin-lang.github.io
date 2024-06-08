@@ -22,7 +22,7 @@ spawnSync({
 });
 rmSync("./dist/tsconfig.json")
 
-console.log("\tRemoving TypeScript files & Fixing JavaScript imports");
+console.log("\tRemoving TypeScript files, Fixing JavaScript & HTML imports");
 function walkDir(directoryPath: string, files: string[] = []): string[] {
 	for (let entry of readdirSync(directoryPath)) {
 		let fullPath = path.join(directoryPath, entry);
@@ -44,19 +44,20 @@ for (let file of walkDir("./dist")) {
 
 	if (file.endsWith(".html")) {
 		let html = readFileSync(file, { encoding: "utf-8" });
-		let rewriter = new HTMLRewriter();
-		rewriter.on("*", {
+		let fixedHTML = new HTMLRewriter().on("script", {
 			element(element) {
-				if (element instanceof HTMLScriptElement && element.src.endsWith(".ts")) {
-					element.src = `${element.src.substring(0, element.src.length - "ts".length)}js`;
+				let src = element.getAttribute("src")!;
+				if (src.endsWith(".ts")) {
+					element.setAttribute("src", `${src.substring(0, src.length - "ts".length)}js`);
 				}
 			}
 		}).transform(html);
+		write(file, fixedHTML);
 		continue;
 	}
 
 	if (file.endsWith(".js")) {
-		let js = readFileSync(file, { "encoding": "utf-8" });
+		let js = readFileSync(file, { encoding: "utf-8" });
 		let ast = acorn.parse(js, { ecmaVersion: "latest", sourceType: "module" });
 		acornWalk.simple(ast, {
 			ImportDeclaration(node) {
@@ -72,5 +73,8 @@ for (let file of walkDir("./dist")) {
 
 		let fixedJs = escodegen.generate(ast);
 		write(file, fixedJs);
+		continue;
 	}
 }
+
+console.log("Build complete!");
