@@ -16,8 +16,8 @@
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script defer src="../../shared/code.ts" type="module"></script>
-	<script defer src="./shared_documentation.ts" type="module"></script>
+	<script defer src="../../shared/code.js" type="module"></script>
+	<script defer src="./shared_documentation.js" type="module"></script>
 
 	<title>Introduction | Cabin Documentation</title>
 </head>
@@ -25,141 +25,6 @@
 <body>
 	<main>
 		<h1 id="reference">Reference</h1>
-
-		<hr />
-
-		<h2 id="standard-library-globals">Standard Library Globals</h2>
-
-		<p>
-			Cabin comes with a number of names that are available globally at all times.
-		</p>
-
-		<h3>Number</h3>
-
-		<p>
-			The <code>Number</code> group represents a real number.
-		</p>
-
-		<p>
-			If you never directly assign a decimal to a number and you never divide it, it will be stored as an
-			<code>int</code> under the hood. If you <i>do</i> divide it or assign a decimal to it, it will be stored as
-			a <code>float</code> under the hood.
-		</p>
-
-		<p>
-			That point about division is important to point out &mdash; Cabin does not have "integer division" or "floor
-			division" &mdash; even if you do an integer divided by an integer, the result will be a floating point
-			number with no rounding (outside of the machine's floating point tolerance)
-		</p>
-
-		<h4>Fields</h4>
-
-		<h5><code>to</code></h5>
-
-		<pre class="code" data-language="cabin">
-			to: action(this: Number, other: Number): List&lt;Number&gt;
-		</pre>
-
-		<p>
-			Returns a list representing the range from the first number to the last number, <strong>including both
-				ends</strong>. This is O(n).
-		</p>
-
-		<p>Example Usage:</p>
-
-		<pre class="code" data-language="cabin">
-			foreach number in 1.to(10) {
-				terminal.print(number);
-			}
-		</pre>
-
-		<h5><code>mod</code></h5>
-
-		<pre class="code" data-language="cabin">
-			mod: action(this: Number, base: Number): Number
-		</pre>
-
-		<p>
-			Returns the given number modulo the given base. This is O(1).
-		</p>
-
-		<p>Example Usage:</p>
-
-		<pre class="code" data-language="cabin">
-			terminal.print(10.mod(3)) // 1
-		</pre>
-
-		<h3>List</h3>
-
-		<h4>Fields</h4>
-
-		<h5><code>contains</code></h5>
-
-		<pre class="code" data-language="cabin">
-			contains: action&lt;Element&gt;(this: List&lt;Element&gt;, value: Element): Boolean
-		</pre>
-
-		<p>
-			Returns whether or not the given value is in this list. This checks for value equality, not reference. This
-			is O(n).
-		</p>
-
-		<p>Example Usage:</p>
-
-		<pre class="code" data-language="cabin">
-			if some_list.contains(32) {
-				terminal.print("32 is in the list!");
-			}
-		</pre>
-
-		<h3><code>terminal</code></h3>
-
-		<h4>Fields</h4>
-
-		<h5><code>print</code></h5>
-
-		<h5><code>input</code></h5>
-
-		<h5><code>clear</code></h5>
-
-		<pre class="code" data-language="cabin">
-			clear: action
-		</pre>
-
-		<p>
-			Clears the terminal. This will perform a true clear with the VT100 escape code <code>\033c</code>
-			(<code>&lt;ESC&gt;c</code>), which will actually fully clear the screen, not just scroll it.
-		</p>
-
-		<p>Example Usage:</p>
-
-		<pre class="code" data-language="cabin">
-			terminal.print("Hello!");
-			terminal.print("Goodbye!");
-			terminal.clear();
-		</pre>
-
-		<h5><code>execute</code></h5>
-
-		<pre class="code" data-language="cabin">
-			execute: action(command: Text): CommandOutput
-		</pre>
-
-		<p>
-			Executes a shell command in a new process. The returned object contains information about the executed
-			command, such as it's standard output, error output, exit code, etc. Note that while the action does capture
-			the information printed by the command, it is still printed. In other words, this will not silent
-			stdout/stderr.
-		</p>
-
-		<p>Example Usage:</p>
-
-		<pre class="code" data-language="cabin">
-			let command_info = terminal.execute("ls -A1");
-			terminal.print(command_info.output);
-		</pre>
-
-		<hr />
 
 		<h2 id="keywords">Keywords</h2>
 
