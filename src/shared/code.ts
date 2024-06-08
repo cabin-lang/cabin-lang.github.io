@@ -21,13 +21,21 @@ const languages = {
 		whitespace: /^([\s\r\n\t ]+)/,
 		comment: /^(#[^\r\n]+)/,
 		identifier: /^([a-z_]\w*)/,
-		operator: /^([\.\{\}\(\);:=\|\[\]]+)/,
+		operator: /^([\.\{\}\(\);:=\|\[\],<>]+)/,
 	},
 	bash: {
 		whitespace: /^([\s\r\n\t ]+)/,
 		prompt: /^(\$)/,
 		flag: /^(\-[\w\-]+)/,
 		identifier: /^(\S+)/,
+	},
+	ebnf: {
+		comment: /^(\(\*[^\*]*\*\))/,
+		rule: /^([a-z_]\w*)\s*=/,
+		identifier: /^([a-z_]\w*)/,
+		string: /^("[^"]+")/,
+		operator: /^([\.\{\}\(\);:=\|\[\],<>]+)/,
+		whitespace: /^([\s\r\n\t ]+)/,
 	}
 } as const satisfies { [key: string]: Language };
 
@@ -58,7 +66,15 @@ export const onedark: Theme = {
 		identifier: "white",
 		prompt: "#888888",
 		flag: "#888888",
-	}
+	},
+	ebnf: {
+		rule: "#E5C07B",
+		identifier: "#E06C75",
+		string: "#C678DD",
+		operator: "lightgray",
+		comment: "#888888",
+		whitespace: "white"
+	},
 };
 
 /**
@@ -182,5 +198,9 @@ export function syntaxHighlight(code: string, language: keyof typeof languages, 
 // Syntax highlight all .code elements
 $(".code").each((_index, element) => {
 	let code_language = ($(element).attr("data-language") ?? "cabin") as keyof typeof languages;
-	element.replaceWith(syntaxHighlight(element.innerHTML, code_language, onedark));
+	let newElement = syntaxHighlight(element.innerHTML, code_language, onedark);
+	Object.entries(element.attributes).forEach(([_index, value]) => {
+		newElement.setAttribute(value.name, value.nodeValue ?? "true");
+	});
+	element.replaceWith(newElement);
 });

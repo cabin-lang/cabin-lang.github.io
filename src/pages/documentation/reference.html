@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+		rel="stylesheet">
+
+	<link href="../../shared/shared.css" rel="stylesheet" />
+	<link href="./shared_documentation.css" rel="stylesheet" />
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script defer src="../../shared/code.ts" type="module"></script>
+	<script defer src="./shared_documentation.ts" type="module"></script>
+
+	<title>Introduction | Cabin Documentation</title>
+</head>
+
+<body>
+	<main>
+		<h1 id="reference">Reference</h1>
+
+		<h2 id="keywords">Keywords</h2>
+
+		<h3>The <code>action</code> keyword</h3>
+		<h3>The <code>and</code> keyword</h3>
+		<h3>The <code>either</code> keyword</h3>
+		<h3>The <code>foreach</code> keyword</h3>
+		<h3>The <code>is</code> keyword</h3>
+		<h3>The <code>it</code> keyword</h3>
+		<h3>The <code>let</code> keyword</h3>
+		<h3>The <code>group</code> keyword</h3>
+		<h3>The <code>new</code> keyword</h3>
+		<h3>The <code>or</code> keyword</h3>
+		<h3>The <code>run</code> keyword</h3>
+		<h3>The <code>while</code> keyword</h3>
+
+		<h2 id="formal-grammar">Formal Grammar</h2>
+
+		Cabin is designed to be as simple as possible, so it's formal grammar is tiny compared to most other languages.
+		Below is the formal grammar for Cabin specified in a number of different formats. Anyone is free to use any of
+		these to implement parsers or tooling.
+
+		<h3 id="ebnf">Extended Backus-Naur Form</h3>
+
+		<pre class="code" data-language="ebnf" data-header="Extended Backus-Naur Form">
+			program = { statement } ;
+
+			(* Statements *)
+			statement = ( declaration | expression ) , ";" ;
+			declaration = "let" , identifier , [ ":" , type ] , "=" , expression ;
+
+			(* Types *)
+			type = [ "editable" ] , expression ;
+
+			(* Expressions *)
+			expression = binary_expression ;
+
+				(* Arithmetic Expressions *)
+				binary_expression = comparison_expression ;
+				boolean_comparison = comparison_expression , { ( "and" | "or" ) , comparison_expression } ;
+				comparison_expression = additive_expression ,
+					{ (" &lt; " | " &lt; " | "=" | "&lt;=" | "&gt;=" ) , additive_expression } ;
+				additive_expression = multiplicative_expression , { ( "+" | "-" ) , multiplicative_expression } ;
+				multiplicative_expression = exponential_expression , { ( "*" | "/" ) , exponential_expression } ;
+				exponential_expression = action_call , { ( "^" ) , action_call } ;
+				action_call = dot_expression , { "&lt;" { expression } "&gt;" } { "(" , { expression } , ")" } ;
+				dot_expression = base_expression "," { "." , identifier } ;
+				base_expression = ( "(" , expression ")" )
+					| block
+					| if_expression
+					| while_expression
+					| foreach_expression
+					| literal ;
+
+				(* Control Flow *)
+				if_expression = "if" , expression , "{" , { statement } , "}" , 
+					{ "otherwise" , "if" , expression , "{" , { statement } , "}" } ,
+					[ "otherwise" , "{" , expression , "}" ] ;
+				block = "{" , { statement } , "}" ;
+				while = "while" , expression , block ;
+				foreach = "foreach" , identifier , "in" , expression , block ;
+
+				(* Literals *)
+				literal = action_declaration | group_declaration ;
+				action_declaration = "action" , 
+					[ "&lt;" , { identifier , [ ":" , type ] , "," } , "&gt;" ] , 
+					[ "(" , { identifier , [ ":" , type ] , "," } , ")" ] , 
+					[ ":" , type  ] ,
+					block ;
+				group_declaration = "group" , 
+					"{" , { identifier , [ ":" , type ] , [ "=" , expression ] , "," } "}" ;
+				either_declaration = "either"
+					"{" , { expression } , "}"
+		</pre>
+	</main>
+</body>
+
+</html>

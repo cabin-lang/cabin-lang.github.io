@@ -42,7 +42,8 @@ main {
 	color: white;
 	position: fixed;
 	width: 20%;
-	height: 100vw;
+	height: 100vh;
+	overflow-y: auto;
 
 	a {
 		color: inherit;
@@ -57,12 +58,15 @@ main {
 	}
 
 	h2+ul {
-		overflow: hidden;
 		transition: height 0.2s;
 	}
 
 	h3 {
 		font-size: 0.9rem;
+	}
+
+	h4 {
+		color: #C0C4E4;
 	}
 
 	* {
