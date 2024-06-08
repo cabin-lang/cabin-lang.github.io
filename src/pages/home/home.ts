@@ -32,7 +32,7 @@ function selectOs(os: Os): void {
 		case "unknown":
 			$(".cargo-installation").removeClass("inactive");
 			$(".install-command").html("<span style='color: gray;'>$</span> cargo install cabin-language");
-			$(".install-command").css({ color: "white", fontFamily: "Monospace" });
+			$(".install-command").css({ color: "white", fontFamily: "'Consolas', 'Monospace'" });
 			break;
 	}
 }

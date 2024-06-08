@@ -78,7 +78,7 @@ main {
 }
 
 code {
-	font-family: "Monospace";
+	font-family: "Consolas", "Monospace";
 	font-size: 1rem;
 	background-color: #555966;
 	padding: 0.2rem;

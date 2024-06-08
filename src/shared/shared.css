@@ -14,7 +14,7 @@ li {
 
 .code {
 	background-color: #282C34;
-	font-family: 'Monospace';
+	font-family: "Consolas", 'Monospace';
 	padding: 3rem;
 	font-size: 1.25rem;
 	border-radius: 0.5rem;
