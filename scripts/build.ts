@@ -11,13 +11,13 @@ console.log("\tCleaning output directory...");
 rmSync("./dist", { "recursive": true, "force": true });
 
 console.log("\tCopying source files...");
-cpSync("./src", "./dist", { "recursive": true });
+cpSync("./src", "./dist/src", { "recursive": true });
 copyFileSync("./tsconfig.json", "./dist/tsconfig.json");
 copyFileSync("./index.html", "./dist/index.html");
 
 console.log("\tCompiling TypeScript...");
 spawnSync({
-	cmd: ["tsc"],
+	cmd: ["bunx", "tsc"],
 	cwd: "./dist",
 });
 rmSync("./dist/tsconfig.json")
@@ -29,7 +29,7 @@ function walkDir(directoryPath: string, files: string[] = []): string[] {
 		if (lstatSync(fullPath).isDirectory()) {
 			walkDir(fullPath, files);
 		} else {
-			files.push(entry);
+			files.push(fullPath);
 		}
 	}
 
@@ -57,7 +57,7 @@ for (let file of walkDir("./dist")) {
 
 	if (file.endsWith(".js")) {
 		let js = readFileSync(file, { "encoding": "utf-8" });
-		let ast = acorn.parse(js, { ecmaVersion: "latest" });
+		let ast = acorn.parse(js, { ecmaVersion: "latest", sourceType: "module" });
 		acornWalk.simple(ast, {
 			ImportDeclaration(node) {
 				let importPath = node.source.value as string;
