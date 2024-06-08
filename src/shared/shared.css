@@ -6,6 +6,7 @@
 	background: transparent;
 	border: none;
 	outline: none;
+	box-sizing: border-box;
 }
 
 li {
