@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+		rel="stylesheet">
+
+	<link href="../../shared/shared.css" rel="stylesheet" />
+	<link href="./shared_documentation.css" rel="stylesheet" />
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script defer src="../../shared/code.ts" type="module"></script>
+	<script defer src="./shared_documentation.ts" type="module"></script>
+
+	<title>Actions | Cabin Documentation</title>
+</head>
+
+<body>
+	<main>
+
+		<h1>Actions</h1>
+
+		<p>
+			Functions in Cabin are declared with the <code>let</code> keyword, just like all other declarations. The
+			value is the <code>action</code> keyword:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let print = action {
+				terminal.print("Hello world!");
+			};
+		</pre>
+
+		<p>
+			Additionally, actions can take parameters with parentheses, and are called with parentheses:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let print_twice = action(text: Text) {
+				terminal.print(text);
+				terminal.print(text);
+			};
+
+			print_twice("Hello world!");
+			print_twice("Goodbye world!");
+		</pre>
+
+		<hr />
+
+		<h2>Compile-Time Parameters</h2>
+
+		<p>
+			Actions can also take <i>compile-time parameters</i> with the angle bracket (<code>&lt;...&gt;</code>)
+			syntax:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let print_twice = action&lt;text: Text&gt; {
+				terminal.print(text);
+				terminal.print(text);
+			};
+
+			print_twice&lt;"Hello world!"&gt;;
+			print_twice&lt;"Goodbye world!"&gt;;
+		</pre>
+
+		<p>
+			Compile-time parameters are the same as regular parameters, except that when calling the action, the value
+			of the argument passed to that parameter <i>must be known at compile-time</i>. In Cabin terms, we'd say it
+			must be a <i>type</i>, but remember, that just means that it's an expression that can be resolved into a
+			literal at compile-time.
+		</p>
+
+		<p>
+			We can also mix and match these! An action can take both compile-time parameters and "regular" parameters.
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let print_two = action&lt;text1: Text&gt;(text2: Text) {
+				terminal.print(text1);
+				terminal.print(text2);
+			};
+
+			print_twice&lt;"Hello world!"&gt;("Goodbye world!");
+		</pre>
+
+		<h3>Compile-Time Parameters as Types</h3>
+
+		<p>
+			As we said before, compile-time parameters are <i>types</i> by Cabin's definition. Cabin lets you use your
+			compile-time parameters as the types for your regular parameters:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let do_something = action&lt;ParameterType: Object&gt;(object: ParameterType) {
+				// ...
+			};
+
+			do_something&lt;Text&gt;("Hello world!");
+		</pre>
+
+		<p>
+			<code>Object</code> just means "any value". Cabin allows ommitting the type of compile-time parameters only,
+			and will use <code>Object</code> as the type by default. So, the following code is equivalent to the
+			previous:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let do_something = action&lt;ParameterType&gt;(object: ParameterType) {
+				// ...
+			};
+
+			do_something&lt;Text&gt;("Hello world!");
+		</pre>
+
+		<p>
+			Additionally, If you are using a compile-time parameter as the type of a regular parameter and you're
+			<i>only passing one regular parameter with that type</i>, you can omit the compile-time parameter when
+			calling the action:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let do_something = action&lt;ParameterType&gt;(object: ParameterType) {
+				// ...
+			};
+
+			do_something("Hello world!"); // This is okay in this case!
+		</pre>
+
+		<p>
+			You can also do this ommitting with multiple parameters, but it gets a little more specific: The closest
+			type that all of the arguments can be assigned to cannot be <code>Object</code>. For example, if you have
+			arguments <code>"Hello world"</code> and <code>"Goodbye world"</code>, these are both <code>Text</code>, so
+			you can omit the compile-time argument in this case. However, if your arguments are
+			<code>"Hello world"</code> and <code>27</code>, these are <code>Text</code> and <code>Number</code>, and the
+			only type they both can be assigne to is <code>Object</code>. Therefore, if you want to do this, you must
+			explicitly pass <code>Object</code> as your compile-time argument.
+		</p>
+	</main>
+</body>
+
+</html>
