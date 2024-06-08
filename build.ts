@@ -1,27 +1,28 @@
-import acorn from "acorn";
-import acornWalk from "acorn-walk";
-import { $, write } from "bun";
+import * as acorn from "acorn";
+import * as acornWalk from "acorn-walk";
+import { spawnSync, write } from "bun";
 import escodegen from "escodegen";
-import { copyFileSync, cpSync, lstatSync, readFileSync, readdirSync, rmSync, rmdirSync } from "node:fs";
+import { copyFileSync, cpSync, lstatSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import path from "node:path";
 
 console.log("Building Cabin Website...");
 
 console.log("\tCleaning output directory...");
-rmdirSync("./dist");
+rmSync("./dist", { "recursive": true, "force": true });
 
-console.log("Copying source files...");
-cpSync("./src", "./dist");
+console.log("\tCopying source files...");
+cpSync("./src", "./dist", { "recursive": true });
 copyFileSync("./tsconfig.json", "./dist/tsconfig.json");
 copyFileSync("./index.html", "./dist/index.html");
 
-$`cd ./dist`
+console.log("\tCompiling TypeScript...");
+spawnSync({
+	cmd: ["tsc"],
+	cwd: "./dist",
+});
+rmSync("./dist/tsconfig.json")
 
-console.log("Compiling TypeScript...");
-$`tsc`
-rmSync("./tsconfig.json")
-
-console.log("Removing TypeScript files & Fixing JavaScript imports");
+console.log("\tRemoving TypeScript files & Fixing JavaScript imports");
 function walkDir(directoryPath: string, files: string[] = []): string[] {
 	for (let entry of readdirSync(directoryPath)) {
 		let fullPath = path.join(directoryPath, entry);
