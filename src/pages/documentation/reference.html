@@ -19,7 +19,7 @@
 	<script defer src="../../shared/code.ts" type="module"></script>
 	<script defer src="./shared_documentation.ts" type="module"></script>
 
-	<title>Introduction | Cabin Documentation</title>
+	<title>Reference | Cabin Documentation</title>
 </head>
 
 <body>
@@ -118,7 +118,41 @@
 
 		<h5><code>print</code></h5>
 
+		<pre class="code" data-language="cabin">
+			print: action(text: Text)
+		</pre>
+
+		<p>
+			Writes to the standard output stream with a trailling newline. The standard output stream is flushed.
+		</p>
+
+		<h5><code>print_error</code></h5>
+
+		<pre class="code" data-language="cabin">
+			print_error: action(text: Text)
+		</pre>
+
+		<p>
+			Writes to the standard error stream with a trailling newline. The standard error stream is flushed.
+		</p>
+
 		<h5><code>input</code></h5>
+
+		<pre class="code" data-language="cabin">
+			input: action: Text
+		</pre>
+
+		<p>
+			Reads a line of input from the standard input stream. The trailing newline is stripped.
+		</p>
+
+		<p>Example Usage:</p>
+
+		<pre class="code" data-language="cabin">
+			terminal.print("Enter your name: ");
+			let name = terminal.input();
+			terminal.print("Hello {name}!");
+		</pre>
 
 		<h5><code>clear</code></h5>
 

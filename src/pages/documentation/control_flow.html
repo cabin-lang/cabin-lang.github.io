@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+		rel="stylesheet">
+
+	<link href="../../shared/shared.css" rel="stylesheet" />
+	<link href="./shared_documentation.css" rel="stylesheet" />
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script defer src="../../shared/code.ts" type="module"></script>
+	<script defer src="./shared_documentation.ts" type="module"></script>
+
+	<title>Control Flow | Cabin Documentation</title>
+</head>
+
+<body>
+	<main>
+		<h1>Control Flow</h1>
+
+		<h2>Blocks, Labels, & <code>is</code> Statements</h2>
+
+		<p>
+			A block is a sequence of statements inside curly braces. Blocks follow normal scoping rules, which means
+			that
+			names declared inside the block cannot be accessed outside the block.
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let message = "Hello world!";
+
+			{
+				let other_message = "Goodbye world!";
+				terminal.print(other_message);
+			};
+
+			// other_message is not accessible here!
+		</pre>
+
+		<p>
+			Unlike an <code>action</code>, blocks will run immediately without needing to be "called":
+		</p>
+
+
+		<pre class="code" data-language="cabin">
+			let message = "hello world!";
+
+			// the code in here will not be executed immediately
+			action {
+				let other_message = "goodbye world!";
+				terminal.print(other_message);
+			};
+
+			// the code in here will be executed immediately
+			{
+				let other_message = "good morning world!";
+				terminal.print(other_message);
+			};
+		</pre>
+
+		<p>
+			Blocks can be used as expressions, too! the <code>is</code> keyword can be used to
+		</p>
+
+		<p>
+			The syntax for an <code>is</code> expression is <code>&lt;label&gt; is &lt;expression&gt;</code>. For
+			example, we can use the declaration-label rule to return a value from a block like so:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let centimeters = {
+				let feet = yards / 3;
+				let inches = feet * 12;
+				centimeters is inches * 2.54;
+			};
+		</pre>
+
+		<p>
+			Cabin actually provides an easier way of doing this &mdash; the <code>it</code> keyword is a general label
+			that refers to "the current scope". So, we could write the above like this:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let centimeters = {
+				let feet = yards / 3;
+				let inches = feet * 12;
+				it is inches * 2.54;
+			};
+		</pre>
+
+		<p>
+			The <code>it</code> keyword is common for all kinds of expressions, such as using <code>if</code>
+			expressions as values (which we'll talk about more in a moment):
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let centimeters = if data.unit != "centimeters" { 
+				it is data.value.to_cm();
+			} otherwise { 
+				it is data.value;
+			};
+		</pre>
+
+		<p>
+			The <code>it</code> keyword is powerful, but you can't use it to break out of nested scopes. That's a
+			situation where you'd normally use the explicit label:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let centimeters = {
+				if data.unit == "centimeters" {
+					centimeters is data.value;
+				};
+
+				let feet = data.value / 3;
+				let inches = feet * 12;
+				it is inches * 2.54;
+			};
+		</pre>
+
+		<p>
+			In this example above, using <code>it</code> in the <code>if</code> expression would only return the value
+			from the <code>if</code> expression, not the outer block itself, so we can use the <code>centimeters</code>
+			label explicitly.
+		</p>
+
+		<hr />
+
+		<h2>For-Each Loops</h2>
+
+		<pre class="code" data-language="cabin">
+			foreach fruit in ["apple", "orange", "banana"] {
+				terminal.print(fruit);
+			};
+		</pre>
+
+		<p>
+			To loop over a range in a more traditional sense, you can use the <code>to</code> function on
+			<code>Number</code>:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			foreach number in 1.to(10) {
+				terminal.print(number);
+			};
+		</pre>
+
+		<p>
+			For-Each loops can also be used as expressions! Using our prior knowledge of <code>is</code> statements and
+			declaration labels, we can write a basic <code>find</code> action:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let png = foreach image in images {
+				if image.extension = "png" {
+					png is image;
+				};
+			};
+		</pre>
+
+		<hr />
+
+		<h2>While Loops</h2>
+
+		<p>
+			<code>while</code> loops execute code while a condition is true:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			while run terminal.input() != "yes" {
+				terminal.print("Please enter yes: ");
+			}
+		</pre>
+
+		<p>
+			Like for-each loops, you can use <code>while</code> loops as expressions:
+		</p>
+
+		<pre class="code" data-language="cabin">
+			let inputted_number = while true {
+				match (run terminal.input()).as_number() {
+					number: Number => { inputted_number is number; },
+					error: Error => { terminal.print("Invalid number. Try again."); }
+				};
+			}
+		</pre>
+
+	</main>
+</body>
+
+</html>

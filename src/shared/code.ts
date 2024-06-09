@@ -4,14 +4,14 @@
  */
 const languages = {
 	cabin: {
-		keyword: /^\b(action|new|function|run|editable|it|let|is|or|group|either|foreach|in|if|otherwise|and)\b/,
+		keyword: /^\b(match|while|action|new|run|editable|it|let|is|or|group|either|foreach|in|if|otherwise|and)\b/,
 		number: /^(-?\d+(\.\d+)?)/,
 		string: /^("[^"]+")/m,
 		function: /^([a-z_]\w*)(\(|<)/,
 		identifier: /^([a-z_]\w*)/,
 		group: /^([A-Z_]\w*)/,
 		comment: /^(\/\/[^\r\n]+)/,
-		operator: /^([\*\+\-\/\.\{\}\(\);:=\|\[\],<>]+)/,
+		operator: /^([\*\!\+\-\/\.\{\}\(\);:=\|\[\],<>]+)/,
 		whitespace: /^([\s\r\n\t ]+)/
 	},
 	toml: {
