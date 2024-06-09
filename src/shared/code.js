@@ -6,8 +6,8 @@ const languages = {
         function: /^([a-z_]\w*)(\(|<)/,
         identifier: /^([a-z_]\w*)/,
         group: /^([A-Z_]\w*)/,
-        operator: /^([\.\{\}\(\);:=\|\[\],<>]+)/,
         comment: /^(\/\/[^\r\n]+)/,
+        operator: /^([\*\+\-\/\.\{\}\(\);:=\|\[\],<>]+)/,
         whitespace: /^([\s\r\n\t ]+)/
     },
     toml: {
