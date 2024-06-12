@@ -55,7 +55,7 @@ for (let file of walkDir("./dist")) {
 					}
 				},
 			})
-			.transform(html);
+			.transform(new Response(html));
 		write(file, fixedHTML);
 		continue;
 	}

@@ -17,8 +17,8 @@
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 			crossorigin="anonymous"
 		></script>
-		<script defer src="../../shared/code.ts" type="module"></script>
-		<script defer src="./shared_documentation.ts" type="module"></script>
+		<script defer src="../../shared/code.js" type="module"></script>
+		<script defer src="./shared_documentation.js" type="module"></script>
 
 		<title>Groups | Cabin Documentation</title>
 	</head>
@@ -239,6 +239,27 @@
 				In a little bit, we'll talk about <code>represent-as</code> declarations which allow for polymorphism. For now, just understand that
 				even if two groups look the same, they may still be distinct.
 			</p>
+
+			<hr />
+
+			<h2>Compile-Time Parameters</h2>
+
+			<p>
+				Groups can take <i>compile-time parameters</i>. These are essetially fields that must be instantiated in the group, but they're
+				positional instead of named, and the value passed to them must be a <i>type</i>, by Cabin's definition (we'll talk more about types
+				later). Here's an example:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Node = group&lt;Data&gt; {
+					data: Data
+				};
+
+				let number_node = new Node&lt;Number&gt; {
+					data = 10
+				};
+			</pre
+			>
 
 			<hr />
 

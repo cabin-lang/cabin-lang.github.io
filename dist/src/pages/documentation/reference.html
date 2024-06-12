@@ -1,224 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-		rel="stylesheet">
+		<link href="../../shared/shared.css" rel="stylesheet" />
+		<link href="./shared_documentation.css" rel="stylesheet" />
 
-	<link href="../../shared/shared.css" rel="stylesheet" />
-	<link href="./shared_documentation.css" rel="stylesheet" />
+		<script
+			src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"
+		></script>
+		<script defer src="../../shared/code.js" type="module"></script>
+		<script defer src="./shared_documentation.js" type="module"></script>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script defer src="../../shared/code.ts" type="module"></script>
-	<script defer src="./shared_documentation.ts" type="module"></script>
+		<title>Reference | Cabin Documentation</title>
+	</head>
 
-	<title>Reference | Cabin Documentation</title>
-</head>
+	<body>
+		<main>
+			<h1 id="reference">Reference</h1>
 
-<body>
-	<main>
-		<h1 id="reference">Reference</h1>
+			<hr />
 
-		<hr />
+			<h2 id="standard-library-globals">Standard Library Globals</h2>
 
-		<h2 id="standard-library-globals">Standard Library Globals</h2>
+			<p>Cabin comes with a number of names that are available globally at all times.</p>
 
-		<p>
-			Cabin comes with a number of names that are available globally at all times.
-		</p>
+			<h3>Number</h3>
 
-		<h3>Number</h3>
+			<p>The <code>Number</code> group represents a real number.</p>
 
-		<p>
-			The <code>Number</code> group represents a real number.
-		</p>
+			<p>
+				If you never directly assign a decimal to a number and you never divide it, it will be stored as an
+				<code>int</code> under the hood. If you <i>do</i> divide it or assign a decimal to it, it will be stored as a <code>float</code> under
+				the hood.
+			</p>
 
-		<p>
-			If you never directly assign a decimal to a number and you never divide it, it will be stored as an
-			<code>int</code> under the hood. If you <i>do</i> divide it or assign a decimal to it, it will be stored as
-			a <code>float</code> under the hood.
-		</p>
+			<p>
+				That point about division is important to point out &mdash; Cabin does not have "integer division" or "floor division" &mdash; even if
+				you do an integer divided by an integer, the result will be a floating point number with no rounding (outside of the machine's
+				floating point tolerance)
+			</p>
 
-		<p>
-			That point about division is important to point out &mdash; Cabin does not have "integer division" or "floor
-			division" &mdash; even if you do an integer divided by an integer, the result will be a floating point
-			number with no rounding (outside of the machine's floating point tolerance)
-		</p>
+			<h4>Fields</h4>
 
-		<h4>Fields</h4>
+			<h5><code>to</code></h5>
 
-		<h5><code>to</code></h5>
-
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			to: action(this: Number, other: Number): List&lt;Number&gt;
-		</pre>
+		</pre
+			>
 
-		<p>
-			Returns a list representing the range from the first number to the last number, <strong>including both
-				ends</strong>. This is O(n).
-		</p>
+			<p>Returns a list representing the range from the first number to the last number, <strong>including both ends</strong>. This is O(n).</p>
 
-		<p>Example Usage:</p>
+			<p>Example Usage:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			foreach number in 1.to(10) {
 				terminal.print(number);
 			}
-		</pre>
+		</pre
+			>
 
-		<h5><code>mod</code></h5>
+			<h5><code>mod</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			mod: action(this: Number, base: Number): Number
-		</pre>
+		</pre
+			>
 
-		<p>
-			Returns the given number modulo the given base. This is O(1).
-		</p>
+			<p>Returns the given number modulo the given base. This is O(1).</p>
 
-		<p>Example Usage:</p>
+			<p>Example Usage:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			terminal.print(10.mod(3)) // 1
-		</pre>
+		</pre
+			>
 
-		<h3>List</h3>
+			<h3>List</h3>
 
-		<h4>Fields</h4>
+			<h4>Fields</h4>
 
-		<h5><code>contains</code></h5>
+			<h5><code>contains</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			contains: action&lt;Element&gt;(this: List&lt;Element&gt;, value: Element): Boolean
-		</pre>
+		</pre
+			>
 
-		<p>
-			Returns whether or not the given value is in this list. This checks for value equality, not reference. This
-			is O(n).
-		</p>
+			<p>Returns whether or not the given value is in this list. This checks for value equality, not reference. This is O(n).</p>
 
-		<p>Example Usage:</p>
+			<p>Example Usage:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			if some_list.contains(32) {
 				terminal.print("32 is in the list!");
 			}
-		</pre>
+		</pre
+			>
 
-		<h3><code>terminal</code></h3>
+			<h3><code>terminal</code></h3>
 
-		<h4>Fields</h4>
+			<h4>Fields</h4>
 
-		<h5><code>print</code></h5>
+			<h5><code>print</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			print: action(text: Text)
-		</pre>
+		</pre
+			>
 
-		<p>
-			Writes to the standard output stream with a trailling newline. The standard output stream is flushed.
-		</p>
+			<p>Writes to the standard output stream with a trailling newline. The standard output stream is flushed.</p>
 
-		<h5><code>print_error</code></h5>
+			<h5><code>print_error</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			print_error: action(text: Text)
-		</pre>
+		</pre
+			>
 
-		<p>
-			Writes to the standard error stream with a trailling newline. The standard error stream is flushed.
-		</p>
+			<p>Writes to the standard error stream with a trailling newline. The standard error stream is flushed.</p>
 
-		<h5><code>input</code></h5>
+			<h5><code>input</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			input: action: Text
-		</pre>
+		</pre
+			>
 
-		<p>
-			Reads a line of input from the standard input stream. The trailing newline is stripped.
-		</p>
+			<p>Reads a line of input from the standard input stream. The trailing newline is stripped.</p>
 
-		<p>Example Usage:</p>
+			<p>Example Usage:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			terminal.print("Enter your name: ");
 			let name = terminal.input();
 			terminal.print("Hello {name}!");
-		</pre>
+		</pre
+			>
 
-		<h5><code>clear</code></h5>
+			<h5><code>clear</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			clear: action
-		</pre>
+		</pre
+			>
 
-		<p>
-			Clears the terminal. This will perform a true clear with the VT100 escape code <code>\033c</code>
-			(<code>&lt;ESC&gt;c</code>), which will actually fully clear the screen, not just scroll it.
-		</p>
+			<p>
+				Clears the terminal. This will perform a true clear with the VT100 escape code <code>\033c</code>
+				(<code>&lt;ESC&gt;c</code>), which will actually fully clear the screen, not just scroll it.
+			</p>
 
-		<p>Example Usage:</p>
+			<p>Example Usage:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			terminal.print("Hello!");
 			terminal.print("Goodbye!");
 			terminal.clear();
-		</pre>
+		</pre
+			>
 
-		<h5><code>execute</code></h5>
+			<h5><code>execute</code></h5>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			execute: action(command: Text): CommandOutput
-		</pre>
+		</pre
+			>
 
-		<p>
-			Executes a shell command in a new process. The returned object contains information about the executed
-			command, such as it's standard output, error output, exit code, etc. Note that while the action does capture
-			the information printed by the command, it is still printed. In other words, this will not silent
-			stdout/stderr.
-		</p>
+			<p>
+				Executes a shell command in a new process. The returned object contains information about the executed command, such as it's standard
+				output, error output, exit code, etc. Note that while the action does capture the information printed by the command, it is still
+				printed. In other words, this will not silent stdout/stderr.
+			</p>
 
-		<p>Example Usage:</p>
+			<p>Example Usage:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let command_info = terminal.execute("ls -A1");
 			terminal.print(command_info.output);
-		</pre>
+		</pre
+			>
 
-		<hr />
+			<hr />
 
-		<h2 id="keywords">Keywords</h2>
+			<h2 id="keywords">Keywords</h2>
 
-		<h3>The <code>action</code> keyword</h3>
-		<h3>The <code>and</code> keyword</h3>
-		<h3>The <code>either</code> keyword</h3>
-		<h3>The <code>foreach</code> keyword</h3>
-		<h3>The <code>is</code> keyword</h3>
-		<h3>The <code>it</code> keyword</h3>
-		<h3>The <code>let</code> keyword</h3>
-		<h3>The <code>group</code> keyword</h3>
-		<h3>The <code>new</code> keyword</h3>
-		<h3>The <code>or</code> keyword</h3>
-		<h3>The <code>run</code> keyword</h3>
-		<h3>The <code>while</code> keyword</h3>
+			<table>
+				<tr>
+					<th>Keyword</th>
+					<th>Documentation</th>
+				</tr>
+				<tr>
+					<td>action</td>
+				</tr>
+				<tr>
+					<td>and</td>
+				</tr>
+				<tr>
+					<td>as</td>
+					<td><a href="./groups.html#represent-as-declarations">Represent-As Declarations</a></td>
+				</tr>
+				<tr>
+					<td>editable</td>
+					<td><a href="./types.html#editable-types">Editable Types</a></td>
+				</tr>
+				<tr>
+					<td>either</td>
+				</tr>
+				<tr>
+					<td>foreach</td>
+				</tr>
+				<tr>
+					<td>group</td>
+				</tr>
+				<tr>
+					<td>if</td>
+				</tr>
+				<tr>
+					<td>in</td>
+				</tr>
+				<tr>
+					<td>is</td>
+				</tr>
+				<tr>
+					<td>it</td>
+				</tr>
+				<tr>
+					<td>let</td>
+					<td><a href="./declarations.html#declarations">Declarations</a></td>
+				</tr>
+				<tr>
+					<td>match</td>
+				</tr>
+				<tr>
+					<td>new</td>
+				</tr>
+				<tr>
+					<td>oneof</td>
+				</tr>
+				<tr>
+					<td>or</td>
+				</tr>
+				<tr>
+					<td>otherwise</td>
+				</tr>
+				<tr>
+					<td>represent</td>
+				</tr>
+				<tr>
+					<td>run</td>
+				</tr>
+				<tr>
+					<td>simultaneously</td>
+				</tr>
+				<tr>
+					<td>while</td>
+				</tr>
+			</table>
 
-		<h2 id="formal-grammar">Formal Grammar</h2>
+			<h2 id="formal-grammar">Formal Grammar</h2>
 
-		Cabin is designed to be as simple as possible, so it's formal grammar is tiny compared to most other languages.
-		Below is the formal grammar for Cabin specified in a number of different formats. Anyone is free to use any of
-		these to implement parsers or tooling.
+			Cabin is designed to be as simple as possible, so it's formal grammar is tiny compared to most other languages. Below is the formal
+			grammar for Cabin specified in a number of different formats. Anyone is free to use any of these to implement parsers or tooling.
 
-		<h3 id="ebnf">Extended Backus-Naur Form</h3>
+			<h3 id="ebnf">Extended Backus-Naur Form</h3>
 
-		<pre class="code" data-language="ebnf" data-header="Extended Backus-Naur Form">
+			<pre class="code" data-language="ebnf" data-header="Extended Backus-Naur Form">
 			program = { statement } ;
 
 			(* Statements *)
@@ -226,7 +281,7 @@
 			declaration = "let" , identifier , [ ":" , type ] , "=" , expression ;
 
 			(* Types *)
-			type = [ "editable" ] , expression ;
+			type = [ "editable" ] , [ "is" ] , expression ;
 
 			(* Expressions *)
 			expression = binary_expression ;
@@ -267,8 +322,8 @@
 					"{" , { identifier , [ ":" , type ] , [ "=" , expression ] , "," } "}" ;
 				either_declaration = "either"
 					"{" , { expression } , "}"
-		</pre>
-	</main>
-</body>
-
+		</pre
+			>
+		</main>
+	</body>
 </html>
