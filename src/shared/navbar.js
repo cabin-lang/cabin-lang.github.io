@@ -1,4 +1,4 @@
-"use strict";
-$(".settings-icon").on("click", _event => {
-    $(".page-settings").toggle();
+'use strict';
+$('.settings-icon').on('click', _event => {
+    $('.page-settings').toggle();
 });
