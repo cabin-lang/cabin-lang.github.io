@@ -1,79 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-		rel="stylesheet">
+		<link href="../../shared/shared.css" rel="stylesheet" />
+		<link href="./shared_documentation.css" rel="stylesheet" />
 
-	<link href="../../shared/shared.css" rel="stylesheet" />
-	<link href="./shared_documentation.css" rel="stylesheet" />
+		<script
+			src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"
+		></script>
+		<script defer src="../../shared/code.ts" type="module"></script>
+		<script defer src="./shared_documentation.ts" type="module"></script>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script defer src="../../shared/code.ts" type="module"></script>
-	<script defer src="./shared_documentation.ts" type="module"></script>
+		<title>Declarations | Cabin Documentation</title>
+	</head>
 
-	<title>Declarations | Cabin Documentation</title>
-</head>
+	<body>
+		<div data-import="/src/shared/navbar.html"></div>
+		<div data-import="/src/pages/documentation/sidebar.html"></div>
 
-<body>
-	<main>
-		<h1>Declarations</h1>
+		<main>
+			<h1>Declarations</h1>
 
-		<h2>Names</h2>
+			<h2>Names</h2>
 
-		<p>
-			In Cabin, we call variables <i>names</i>. This is because names are often unchanging, and therefore by
-			definition, not variable. Names can be declared with the <code>let</code> keyword, for example:
-		</p>
+			<p>
+				In Cabin, we call variables <i>names</i>. This is because names are often unchanging, and therefore by definition, not variable. Names
+				can be declared with the <code>let</code> keyword, for example:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message = "Hello world!";
-		</pre>
+		</pre
+			>
 
-		<p>
-			Names always <i>reference</i> a value. Two names can reference the same value!
-		</p>
+			<p>Names always <i>reference</i> a value. Two names can reference the same value!</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message = "Hello world!";
 			let message2 = message;
-		</pre>
+		</pre
+			>
 
-		<p>
-			In this example, changing the value of either name will also change the value of another name. However,
-			Cabin won't actually let you write this implicitly. You can't <i>directly</i> assign one name to another,
-			you need to specify if you want to reference it or copy it.
-		</p>
+			<p>
+				In this example, changing the value of either name will also change the value of another name. However, Cabin won't actually let you
+				write this implicitly. You can't <i>directly</i> assign one name to another, you need to specify if you want to reference it or copy
+				it.
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message = "Hello world!";
 			let message2 = message; // This isn't valid!
 			let message3 = message.copy(); // This IS valid!
 			let message4 = message.reference(); // This is also valid!
-		</pre>
+		</pre
+			>
 
-		<p>
-			The <code>reference</code> function exists on all values, and it actually does nothing! This can seem
-			somewhat silly, but it conveys intention and prevents you from misunderstanding assignments. Cabin will not
-			let you raw assign a name to a name, because it could cause confusion as to what's happening.
-		</p>
+			<p>
+				The <code>reference</code> function exists on all values, and it actually does nothing! This can seem somewhat silly, but it conveys
+				intention and prevents you from misunderstanding assignments. Cabin will not let you raw assign a name to a name, because it could
+				cause confusion as to what's happening.
+			</p>
 
-		<hr />
+			<hr />
 
-		<h2>Objects</h2>
+			<h2>Objects</h2>
 
-		<p>
-			Objects are groups of values. In Cabin, you can create an object with the <code>new</code> keyword:
-		</p>
+			<p>Objects are groups of values. In Cabin, you can create an object with the <code>new</code> keyword:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let john = new Object {
 				name = "John",
 				age = 30,
@@ -82,13 +85,12 @@
 					house = 123
 				}
 			};
-		</pre>
+		</pre
+			>
 
-		<p>
-			You can access names of this object with <code>.</code> syntax:
-		</p>
+			<p>You can access names of this object with <code>.</code> syntax:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let john = new Object {
 				name = "John",
 				age = 30,
@@ -100,9 +102,8 @@
 
 			terminal.print(john.name); // John
 			terminal.print(john.address.street); // Main St
-		</pre>
-
-	</main>
-</body>
-
+		</pre
+			>
+		</main>
+	</body>
 </html>
