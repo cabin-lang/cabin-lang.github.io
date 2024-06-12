@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+
+		<link href="../../shared/shared.css" rel="stylesheet" />
+		<link href="./shared_documentation.css" rel="stylesheet" />
+
+		<script
+			src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"
+		></script>
+		<script defer src="../../shared/code.ts" type="module"></script>
+		<script defer src="./shared_documentation.ts" type="module"></script>
+
+		<title>Groups | Cabin Documentation</title>
+	</head>
+
+	<body>
+		<main>
+			<h1>Groups</h1>
+
+			<p>
+				A <code>group</code> defines a blueprint for grouping values together. It is similar to a <code>struct</code> in many other languages,
+				or in some ways a <code>class</code> in some others. Here's an example of a <code>group</code> declaration:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+			</pre
+			>
+
+			<p>
+				This follows the same syntax to all declarations in Cabin &mdash; <code>let &lt;name&gt; = &lt;value&gt;</code>. Note that by
+				convention, groups are one of the few cases where we write our name in PascalCase instead of snake_case. Groups can be "instantiated"
+				using the <code>new</code> keyword:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john = new Person {
+					name = "john",
+					age = 30,
+					is_married = false
+				};
+			</pre
+			>
+
+			<p>
+				Notice how we only assign properties that are listed in <code>Person</code>. This is required; Cabin doesn't allow assigning arbitrary
+				properties:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john = new Person {
+					name = "john",
+					age = 30,
+					is_married = false,
+					best_friend: "jacob" // Error! No field "best_friend" on "Person"
+				};
+			</pre
+			>
+
+			<p>By the way, the properties at instation don't have to be in the same order as the declaration. For example, this is just as valid:</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john = new Person {
+					age = 30,
+					is_married = false,
+					name = "john",
+				};
+			</pre
+			>
+
+			<p>
+				Groups can also have default values assigned to their fields. These are fields where you don't have to pass a value at the time of
+				instantiation and a default will be used.
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married = false
+				};
+
+				let john = new Person {
+					age = 30,
+					name = "john",
+				}; // is_married defaults to false
+			</pre
+			>
+
+			<p>Furthermore, we can retrieve the fields on the group with the "dot" operator:</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john = new Person {
+					name = "john",
+					age = 30,
+					is_married = false
+				};
+
+				terminal.print(john.name); // Prints john!
+			</pre
+			>
+
+			<p>
+				Group fields are not <code>editable</code> by default. We'll talk more about <code>editable</code> soon, but basically it means that
+				you can't change the values of the group's fields. So, this would be invalid:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john = new Person {
+					name = "john",
+					age = 30,
+					is_married = false
+				};
+
+				john.name = "mary"; // compiler error! `name` is not `editable`.
+			</pre
+			>
+
+			<p>To fix this, we need to make the field have an <code>editable</code> type:</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: editable Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john: editable = new Person {
+					name = "john",
+					age = 30,
+					is_married = false
+				};
+
+				john.name = "mary"; // This works now!
+			</pre
+			>
+
+			<p>This also applies to default fields. So this isn't valid:</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: editable Text,
+					age: Number,
+					is_married = false
+				};
+
+				let john: editable = new Person {
+					name = "john",
+					age = 30,
+					is_married = true // Error! `is_married` is already assigned and not `editable`
+				};
+			</pre
+			>
+
+			<p>Naturally, this problem has the same solution:</p>
+
+			<pre class="code" data-language="cabin">
+				let Person = group {
+					name: editable Text,
+					age: Number,
+					is_married: editable Boolean = false
+				};
+
+				let john: editable = new Person {
+					name = "john",
+					age = 30,
+					is_married = true // All good!
+				};
+			</pre
+			>
+
+			<p>
+				Again, don't worry too much about this &mdash; We'll talk more about <code>editable</code> in a little bit. After reading about
+				<code>editable</code> you can always come back here to digest this more.
+			</p>
+
+			<hr />
+
+			<h2>Nominal Typing</h2>
+
+			<p>
+				Cabin is a <i>nominally</i> typed language. This means that just because two groups have the same structure, you can't assign one to a
+				type of another. For example:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Group1 = group { data: Text };
+				let Group2 = group { data: Text };
+
+				let instance: Group1 = new Group2 { data = "Hi!"}; // Invalid!
+			</pre
+			>
+
+			<p>
+				In a little bit, we'll talk about <code>represent-as</code> declarations which allow for polymorphism. For now, just understand that
+				even if two groups look the same, they may still be distinct.
+			</p>
+
+			<hr />
+
+			<h2>The Object Type</h2>
+
+			<p>
+				<code>Object</code> is a special group because the compiler knows about it and treats it specially. <code>Object</code> is used to
+				create "anonymous" objects without an existing group as it's type:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let john = new Object {
+					name = "john",
+					age = 30,
+					is_married = true
+				};
+			</pre
+			>
+
+			<p>
+				You can put whatever fields you want in here, but note that <i>it's still strictly type checked.</i> You can think of it as similar to
+				a TypeScript object. The above is loosely equivalent to this:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let _JohnGroup = group {
+					name: Text,
+					age: Number,
+					is_married: Boolean
+				};
+
+				let john = new _JohnGroup {
+					name = "john",
+					age = 30,
+					is_married = true
+				};
+			</pre
+			>
+
+			<p>
+				So you still can't access arbitrary fields on this object, and you can't add new fields to it when you mutate it. When
+				<code>Object</code> is used as a type, it means anything can be assigned to it:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let do_something = action(object: Object) {
+					// ...
+				};
+
+				// These are all valid!
+				do_something(3);
+				do_something("Hi!");
+				do_something(john);
+			</pre
+			>
+
+			<p>
+				The reason why <code>do_something</code> doesn't have an example body here is because there's not much you can do with
+				<code>Object</code> outside of some type inspection. You can't access arbitrary fields on it; It's sort of like
+				<code>unknown</code> in TypeScript, and <i>not</i> like <code>any</code>.
+			</p>
+
+			<hr />
+
+			<h2>Represent-As Declarations</h2>
+
+			<p>
+				Represent-as declarations are Cabin's way of allowing polymorphism. The concept is very simple: You can <i>represent</i> one group
+				<i>as</i> another. Let's look at a simple example where we want to create an interface-like structure. Say we want an action that can
+				take anything with a parameter-less <code>do</code> action:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let run_twice = action(runnable: Runnable) {
+					runnable.do();
+					runnable.do();
+				};
+			</pre
+			>
+
+			<p>
+				So we need to define a <code>Runnable</code> "interface" that can accomplish this. In Cabin, that'd just be a group like everything
+				else:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Runnable = group {
+					do: action(this: This)
+				};
+			</pre
+			>
+
+			<p>
+				Now, we can take any other group and <i>represent</i> it as <code>Runnable</code>. This just involves implementing the required
+				fields:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let Runnable = group {
+					do: action(this: This)
+				};
+
+				let ExisingGroup = group {
+					data: Text
+				};
+
+				represent ExistingGroup as Runnable {
+					do = action(this: This) {
+						terminal.print(this.data);
+					}
+				};
+			</pre
+			>
+
+			<p>Now, objects of type <code>ExistingGroup</code> can be assigned to names of type <code>Runnable</code>:</p>
+
+			<pre class="code" data-language="cabin">
+				let existing_group_instance = new ExisingGroup {
+					data = "Done!";
+				};
+
+				run_twice(existing_group_instance);
+			</pre
+			>
+
+			<p>
+				Uniquely, it's important to note here that <code>existing_group_instance</code> is <i>not</i> getting "coerced" into a
+				<code>Runnable</code> here. It's concrete type is still passed to the action &mdash; meaning we can still use the various operations
+				to get it's actual type:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let existing_group_instance = new ExisingGroup {
+					data = "Done!";
+				};
+
+				let inspect = action(runnable: Runnable) {
+					foreach field in runnable.type.fields {
+						terminal.print(field.name);
+					};
+				};
+
+				inspect(existing_group_instance); // Prints "data"!
+			</pre
+			>
+
+			<p>
+				As we can see here, the type information about <code>existing_group_instance</code> is retained into the function call. Remember, in
+				Cabin, the explicit type annotation on a name (including a parameter) does not mean "what is this thing?" it means "what can this
+				thing be assigned to?".
+			</p>
+		</main>
+	</body>
+</html>
