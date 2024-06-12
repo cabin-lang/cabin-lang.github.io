@@ -69,6 +69,11 @@ main {
 		color: #C0C4E4;
 	}
 
+	h5 {
+		font-family: "Consolas", "Monospace";
+		font-size: 0.75rem;
+	}
+
 	* {
 		font-weight: normal;
 		list-style-type: none;

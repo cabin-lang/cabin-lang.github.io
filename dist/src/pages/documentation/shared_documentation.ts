@@ -1,4 +1,3 @@
-"use strict";
 // $(".sidebar h2").each((_index, h2) => {
 // 	$(h2).next().css({ height: "0px" });
 // 	$(h2).on("click", _event => {

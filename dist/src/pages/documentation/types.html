@@ -1,500 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-		rel="stylesheet">
+		<link href="../../shared/shared.css" rel="stylesheet" />
+		<link href="./shared_documentation.css" rel="stylesheet" />
 
-	<link href="../../shared/shared.css" rel="stylesheet" />
-	<link href="./shared_documentation.css" rel="stylesheet" />
+		<script
+			src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"
+		></script>
+		<script defer src="../../shared/code.ts" type="module"></script>
+		<script defer src="../../shared/navbar.ts" type="module"></script>
+		<script defer src="./shared_documentation.ts" type="module"></script>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script defer src="../../shared/code.js" type="module"></script>
-	<script defer src="../../shared/navbar.js" type="module"></script>
-	<script defer src="./shared_documentation.js" type="module"></script>
+		<title>Types | Cabin Documentation</title>
+	</head>
 
-	<title>Types | Cabin Documentation</title>
-</head>
+	<body>
+		<nav>
+			<a href="../documentation/introduction.html">Documentation</a>
+			<a href="#">Tooling</a>
+			<a href="https://github.com/cabin-lang/cabin" target="_blank"
+				>Source<img src="https://static-00.iconduck.com/assets.00/external-link-icon-2048x2048-wo7lfgrz.png"
+			/></a>
+			<img
+				class="settings-icon"
+				src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Gear_icon-72a7cf.svg/2048px-Gear_icon-72a7cf.svg.png"
+			/>
+		</nav>
 
-<body>
-	<nav>
-		<a href="../documentation/introduction.html">Documentation</a>
-		<a href="#">Tooling</a>
-		<a href="https://github.com/cabin-lang/cabin" target="_blank">Source<img
-				src="https://static-00.iconduck.com/assets.00/external-link-icon-2048x2048-wo7lfgrz.png" /></a>
-		<img class="settings-icon"
-			src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Gear_icon-72a7cf.svg/2048px-Gear_icon-72a7cf.svg.png" />
-	</nav>
+		<section class="page-settings">
+			<h1>Page Preferences</h1>
 
-	<section class="page-settings">
-		<h1>Page Preferences</h1>
+			Page Theme Code Theme
+		</section>
 
-		Page Theme
+		<section class="sidebar">
+			<h1>Index</h1>
+			<ul>
+				<li>
+					<h2><a href="./introduction.html#introduction">Introduction</a></h2>
+					<ul>
+						<li>
+							<h3><a href="./introduction.html#purpose-and-philosophy">Purpose & Philosophy</a></h3>
+						</li>
+						<li>
+							<h3><a href="./introduction.html#installation">Installation</a></h3>
+						</li>
+						<li>
+							<h3><a href="./introduction.html#your-first-program">Your First Program</a></h3>
+						</li>
+						<li>
+							<h3><a href="./introduction.html#compiler-commands">Compiler Commands</a></h3>
+							<ul>
+								<li>
+									<h4><a href="./introduction.html#command-new">cabin new</a></h4>
+								</li>
+								<li>
+									<h4><a href="./introduction.html#command-run">cabin run</a></h4>
+								</li>
+								<li>
+									<h4><a href="./introduction.html#command-build">cabin build</a></h4>
+								</li>
+								<li>
+									<h4><a href="./introduction.html#command-format">cabin format</a></h4>
+								</li>
+								<li>
+									<h4><a href="./introduction.html#command-add">cabin add</a></h4>
+								</li>
+								<li>
+									<h4><a href="./introduction.html#command-check">cabin check</a></h4>
+								</li>
+								<li>
+									<h4><a href="./introduction.html#command-transpile">cabin tranpsile</a></h4>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h3><a href="./introduction.html#project-configuration">Project Configuration</a></h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="./declarations.html#declarations">Declarations</a></h2>
+					<ul>
+						<li>
+							<h3><a href="./declarations.html#names">Names</a></h3>
+						</li>
+						<li>
+							<h3><a href="./declaratons.html#objects">Objects</a></h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="./compiletime.html#compile-time-by-default">Compile-Time by Default</a></h2>
+					<ul>
+						<li>
+							<h3><a href="./compiletime.html#what-is-compile-time">What is compile-time?</a></h3>
+						</li>
+						<li>
+							<h3><a href="./compiletime.html#evaluating-at-compile-time">Evaluating at compile-time</a></h3>
+						</li>
+						<li>
+							<h3><a href="./compiletime.html#compile-time-as-the-default">Compile-time as the default</a></h3>
+						</li>
+						<li>
+							<h3><a href="./compiletime.html#evaluating-at-runtime">Evaluating at runtime</a></h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="./groups.html#groups">Groups</a></h2>
+					<ul>
+						<li>
+							<h3><a href="./groups.html#nominal-typing">Nominal Typing</a></h3>
+						</li>
+						<li>
+							<h3><a href="./groups.html#the-object-type">The Object Type</a></h3>
+						</li>
+						<li>
+							<h3><a href="./groups.html#represent-as-declarations">Represent-As Declarations</a></h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="./types.html#types">Types</a></h2>
+					<ul>
+						<li>
+							<h3><a href="./types.html#editable-types">Editable Types</a></h3>
+						</li>
+						<li>
+							<h3><a href="./types.html#type-inference">Type Inference</a></h3>
+						</li>
+						<li>
+							<h3><a href="./types.html#is-types">Is-Types</a></h3>
+						</li>
+						<li>
+							<h3><a href="./types.html#explicit-type-annotations">Explicit Type Annotations</a></h3>
+						</li>
+						<li>
+							<h3><a href="./types.html#convention-notes">Convention Notes</a></h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="./controlflow.html#control-flow">Control Flow</a></h2>
+					<ul>
+						<li>
+							<h3>Blocks & Is Statements</h3>
+						</li>
+						<li>
+							<h3>If Expressions</h3>
+						</li>
+						<li>
+							<h3>For-Each Loops</h3>
+						</li>
+						<li>
+							<h3>While Loops</h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Eithers</h2>
+					<ul>
+						<li>
+							<h3>Declarations & Usage</h3>
+						</li>
+						<li>
+							<h3>Property Attachment</h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Reference</h2>
+					<ul>
+						<li>
+							<h3>Standard Library Globals</h3>
+							<ul>
+								<li>
+									<h4>Boolean</h4>
+								</li>
+								<li>
+									<h4>Text</h4>
+									<ul>
+										<li>
+											<h5>lines</h5>
+										</li>
+										<li>
+											<h5>replace</h5>
+										</li>
+										<li>
+											<h5>split</h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h4>Number</h4>
+									<ul>
+										<li>
+											<h5>mod</h5>
+										</li>
+										<li>
+											<h5>down_to</h5>
+										</li>
+										<li>
+											<h5>to</h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h4>List</h4>
+									<ul>
+										<li>
+											<h5>contains</h5>
+										</li>
+										<li>
+											<h5>reverse</h5>
+										</li>
+										<li>
+											<h5>with_indices</h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h4>terminal</h4>
+									<ul>
+										<li>
+											<h5>clear</h5>
+										</li>
+										<li>
+											<h5>input</h5>
+										</li>
+										<li>
+											<h5>print</h5>
+										</li>
+										<li>
+											<h5>print_error</h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h4>files</h4>
+									<ul>
+										<li>
+											<h5>create_directory</h5>
+										</li>
+										<li>
+											<h5>create_file</h5>
+										</li>
+										<li>
+											<h5>delete</h5>
+										</li>
+										<li>
+											<h5>directory_exists</h5>
+										</li>
+										<li>
+											<h5>file_exists</h5>
+										</li>
+										<li>
+											<h5>metadata</h5>
+										</li>
+										<li>
+											<h5>read_directory</h5>
+										</li>
+										<li>
+											<h5>read_file</h5>
+										</li>
+										<li>
+											<h5>write_file</h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h3>Keywords</h3>
+							<ul>
+								<li>
+									<h4><a href="./reference.html#keyword-action">action</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-and">and</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-group">either</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-foreach">foreach</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-group">group</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-if">if</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-in">in</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-is">is</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-it">it</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-if">let</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-new">new</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-otherwise">otherwise</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-or">or</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-run">run</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#keyword-while">while</a></h4>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h3><a href="./reference.html#formal-grammar">Formal Grammar</a></h3>
+							<ul>
+								<li>
+									<h4><a href="./reference.html#ebnf">Extended Backus-Naur</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#ebnf">PEG</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#ebnf">TreeSitter</a></h4>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h3><a href="./reference.html#projects">Projects</a></h3>
+							<ul>
+								<li>
+									<h4><a href="./reference.html#parser">The Cabin Parser</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#cli">The Cabin CLI Tool</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#lsp">The Cabin LSP</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#formatter">The Cabin Formatter</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#c-transpiler">The Cabin-to-C Transpiler</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#website">The Cabin Website</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#vscode">The Cabin VSCode Extension</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#vim">The Cabin Vim Extension</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#neovim">The Cabin Neovim Extension</a></h4>
+								</li>
+								<li>
+									<h4><a href="./reference.html#treesitter-project">The Cabin TreeSitter Parser</a></h4>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h3><a href="./reference.html#community">Community</a></h3>
+						</li>
+						<li>
+							<h3><a href="./reference.html#legal">Legal</a></h3>
+							<ul>
+								<li>
+									<h4><a href="./reference.html#licenses">Cabin Project Licenses</a></h4>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
 
-		Code Theme
+		<main>
+			<h1 id="types">Types</h1>
 
-	</section>
+			<p>
+				The term "type" has a very special meaning in Cabin. To understand what a <i>type</i> is, we must first understand what a
+				<i>literal</i> is. Simply put, a <i>literal</i> is any construct in Cabin where all information about the construct is known. For
+				example, a number is a literal &mdash; It's just a number; Everything that can be known about it <i>will</i> be known about it.
+				Conversely, an <code>if</code>
+				expression is not a literal, because we do not know what object will be returned (the object returned from
+				<code>if</code>
+				or the object returned from <code>otherwise</code>) so we can't definitively state all of the properties of the value of this
+				expression.
+			</p>
 
-	<section class="sidebar">
-		<h1>Index</h1>
-		<ul>
-			<li>
-				<h2><a href="./introduction.html#introduction">Introduction</a></h2>
-				<ul>
-					<li>
-						<h3><a href="./introduction.html#purpose-and-philosophy">Purpose & Philosophy</a></h3>
-					</li>
-					<li>
-						<h3><a href="./introduction.html#installation">Installation</a></h3>
-					</li>
-					<li>
-						<h3><a href="./introduction.html#your-first-program">Your First Program</a></h3>
-					</li>
-					<li>
-						<h3><a href="./introduction.html#compiler-commands">Compiler Commands</a></h3>
-						<ul>
-							<li>
-								<h4><a href="./introduction.html#command-new">cabin new</a></h4>
-							</li>
-							<li>
-								<h4><a href="./introduction.html#command-run">cabin run</a></h4>
-							</li>
-							<li>
-								<h4><a href="./introduction.html#command-build">cabin build</a></h4>
-							</li>
-							<li>
-								<h4><a href="./introduction.html#command-format">cabin format</a></h4>
-							</li>
-							<li>
-								<h4><a href="./introduction.html#command-add">cabin add</a></h4>
-							</li>
-							<li>
-								<h4><a href="./introduction.html#command-check">cabin check</a></h4>
-							</li>
-							<li>
-								<h4><a href="./introduction.html#command-transpile">cabin tranpsile</a></h4>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href="./introduction.html#project-configuration">Project Configuration</a></h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2><a href="./declarations.html#declarations">Declarations</a></h2>
-				<ul>
-					<li>
-						<h3><a href="./declarations.html#names">Names</a></h3>
-					</li>
-					<li>
-						<h3><a href="./declaratons.html#objects">Objects</a></h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2><a href="./compiletime.html#compile-time-by-default">Compile-Time by Default</a></h2>
-				<ul>
-					<li>
-						<h3><a href="./compiletime.html#what-is-compile-time">What is compile-time?</a></h3>
-					</li>
-					<li>
-						<h3><a href="./compiletime.html#evaluating-at-compile-time">Evaluating at compile-time</a></h3>
-					</li>
-					<li>
-						<h3><a href="./compiletime.html#compile-time-as-the-default">Compile-time as the default</a>
-						</h3>
-					</li>
-					<li>
-						<h3><a href="./compiletime.html#evaluating-at-runtime">Evaluating at runtime</a></h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2>Groups</h2>
-				<ul>
-					<li>
-						<h3>Declarations & Instantiations</h3>
-					</li>
-					<li>
-						<h3>Nominal Typing</h3>
-					</li>
-					<li>
-						<h3>Group Extensions</h3>
-					</li>
-					<li>
-						<h3>The Object Type</h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2><a href="./types.html#types">Types</a></h2>
-				<ul>
-					<li>
-						<h3><a href="./types.html#editable-types">Editable Types</a></h3>
-					</li>
-					<li>
-						<h3><a href="./types.html#type-inference">Type Inference</a></h3>
-					</li>
-					<li>
-						<h3><a href="./types.html#is-types">Is-Types</a></h3>
-					</li>
-					<li>
-						<h3><a href="./types.html#explicit-type-annotations">Explicit Type Annotations</a></h3>
-					</li>
-					<li>
-						<h3><a href="./types.html#convention-notes">Convention Notes</a></h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2>Control Flow</h2>
-				<ul>
-					<li>
-						<h3>Blocks & Is Statements</h3>
-					</li>
-					<li>
-						<h3>If Expressions</h3>
-					</li>
-					<li>
-						<h3>For Loops</h3>
-					</li>
-					<li>
-						<h3>While Loops</h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2>Eithers</h2>
-				<ul>
-					<li>
-						<h3>Declarations & Usage</h3>
-					</li>
-					<li>
-						<h3>Property Attachment</h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2>Reference</h2>
-				<ul>
-					<li>
-						<h3>Standard Library Globals</h3>
-						<ul>
-							<li>
-								<h4>Text</h4>
-								<h4>Number</h4>
-								<h4>List</h4>
-								<h4>Boolean</h4>
-								<h4>terminal</h4>
-								<h4>file</h4>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<h3>Keywords</h3>
-						<ul>
-							<li>
-								<h4><a href="./reference.html#keyword-action">action</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-and">and</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-group">either</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-foreach">foreach</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-group">group</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-if">if</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-in">in</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-is">is</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-it">it</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-if">let</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-new">new</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-otherwise">otherwise</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-or">or</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-run">run</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#keyword-while">while</a></h4>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href="./reference.html#formal-grammar">Formal Grammar</a></h3>
-						<ul>
-							<li>
-								<h4><a href="./reference.html#ebnf">Extended Backus-Naur</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#ebnf">PEG</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#ebnf">TreeSitter</a></h4>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href="./reference.html#projects">Projects</a></h3>
-						<ul>
-							<li>
-								<h4><a href="./reference.html#parser">The Cabin Parser</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#cli">The Cabin CLI Tool</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#lsp">The Cabin LSP</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#formatter">The Cabin Formatter</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#c-transpiler">The Cabin-to-C Transpiler</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#website">The Cabin Website</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#vscode">The Cabin VSCode Extension</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#vim">The Cabin Vim Extension</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#neovim">The Cabin Neovim Extension</a></h4>
-							</li>
-							<li>
-								<h4><a href="./reference.html#treesitter-project">The Cabin TreeSitter Parser</a></h4>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href="./reference.html#community">Community</a></h3>
-					</li>
-					<li>
-						<h3><a href="./reference.html#legal">Legal</a></h3>
-						<ul>
-							<li>
-								<h4><a href="./reference.html#licenses">Cabin Project Licenses</a></h4>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</section>
+			<p>
+				After understanding this, we can talk about <i>types</i>. In Cabin, a <i>type</i> is
+				<strong>any expression that can be evaluated into a literal at compile-time</strong>. Here are some examples to make this more clear:
+			</p>
 
-	<main>
-		<h1 id="types">Types</h1>
-
-		<p>
-			The term "type" has a very special meaning in Cabin. To understand what a <i>type</i> is, we must first
-			understand what a <i>literal</i> is. Simply put, a <i>literal</i> is any construct in Cabin where all
-			information about the construct is known. For example, a number is a literal &mdash; It's just a number;
-			Everything that can be known about it <i>will</i> be known about it. Conversely, an <code>if</code>
-			expression
-			is not a literal, because we do not know what object will be returned (the object returned from
-			<code>if</code>
-			or the object returned from <code>otherwise</code>) so we can't definitively state all of the properties of
-			the
-			value of this expression.
-		</p>
-
-		<p>
-			After understanding this, we can talk about <i>types</i>. In Cabin, a <i>type</i> is <strong>any expression
-				that
-				can be evaluated into a literal at compile-time</strong>. Here are some examples to make this more
-			clear:
-		</p>
-
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message: Text = "Hello world!";
-		</pre>
+		</pre
+			>
 
-		<p>
-			In this case, the type of the name "message" is <code>Text</code>. <code>Text</code> is an identifier which
-			can
-			be resolved at compile-time into the group <code>Text</code>, which is a literal! It's a group, so all of
-			the
-			information about it (its properties) is known at compile-time.
-		</p>
+			<p>
+				In this case, the type of the name "message" is <code>Text</code>. <code>Text</code> is an identifier which can be resolved at
+				compile-time into the group <code>Text</code>, which is a literal! It's a group, so all of the information about it (its properties)
+				is known at compile-time.
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let get_message_type = function {
 				it is Text;
 			};
 
 			let message: get_message_type() = "Hello world!";
-		</pre>
+		</pre
+			>
 
-		<p>
-			In this case, the type of the name "message" is the return value of calling <code>get_message_type()</code>.
-			<code>get_message_type()</code> can be evaluated fully at compile-time, so it gets called and returns
-			<code>Text</code>. In order to use a function call as a type like this, it <i>must</i> be fully evaluable at
-			compile-time!
-		</p>
+			<p>
+				In this case, the type of the name "message" is the return value of calling <code>get_message_type()</code>.
+				<code>get_message_type()</code> can be evaluated fully at compile-time, so it gets called and returns <code>Text</code>. In order to
+				use a function call as a type like this, it <i>must</i> be fully evaluable at compile-time!
+			</p>
 
-		<hr />
+			<hr />
 
-		<h2 id="editable-types">Editable</h2>
+			<h2 id="editable-types">Editable</h2>
 
-		<p>
-			<code>editable</code> is a modifier that can be applied to types, which means the value of the variable can
-			be
-			edited. For example:
-		</p>
+			<p><code>editable</code> is a modifier that can be applied to types, which means the value of the variable can be edited. For example:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message: editable Text = "Hello world!";
 			message = "Goodbye world!"; // This is now valid!
-		</pre>
+		</pre
+			>
 
-		<hr />
+			<hr />
 
-		<h2 id="type-inference">Type Inference</h2>
+			<h2 id="type-inference">Type Inference</h2>
 
-		<p>
-			Cabin supports a feature called <i>type inference.</i> Type inference occurs when you omit a type, and the
-			compiler figures out what the type is meant to be. Most of what we've seen so far has used type inference!
-			Here's an example:
-		</p>
+			<p>
+				Cabin supports a feature called <i>type inference.</i> Type inference occurs when you omit a type, and the compiler figures out what
+				the type is meant to be. Most of what we've seen so far has used type inference! Here's an example:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message = "Hello world!"; // This infers the type!
-		</pre>
+		</pre
+			>
 
-		<p>
-			It's important to note that Cabin will <i>never</i> infer a type as <code>editable</code>. All
-			<code>editable</code> values must be marked as such explicitly. Also, the type of <code>editable</code>
-			names can still be inferred:
-		</p>
+			<p>
+				It's important to note that Cabin will (almost) <i>never</i> infer a type as <code>editable</code> (We'll talk about the
+				<i>one</i> time Cabin will infer editable at the bottom of this page). All <code>editable</code> values must be marked as such
+				explicitly. Also, the type of <code>editable</code>
+				names can still be inferred:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message: editable = "Hello world!"; // This is valid!
-		</pre>
+		</pre
+			>
 
-		<hr />
+			<hr />
 
-		<h2 id="is-types">Is Types</h2>
+			<h2 id="is-types">Is Types</h2>
 
-		<p>
-			It's important to talk about <code>is</code> types. is-types are types which declare that the value must be
-			"the thing" as opposed to "an instance of the thing". This sounds confusing, but it's very simple. Here's an
-			example:
-		</p>
+			<p>
+				It's important to talk about <code>is</code> types. is-types are types which declare that the value must be "the thing" as opposed to
+				"an instance of the thing". This sounds confusing, but it's very simple. Here's an example:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message_1: Text = "Hello world!";
 			let message_2: is "Hello world!" = "Hello world!";
-		</pre>
+		</pre
+			>
 
-		<p>
-			These are both valid! This may seem useless, but it may make more sense when we talk about union types:
-		</p>
+			<p>These are both valid! This may seem useless, but it may make more sense when we talk about union types:</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message: editable either { is "Hello world!", is "Goodbye world!" } = "Hello world!";
 			message = "Goodbye world!"; // valid!
 			message = "How are you world?"; // Not valid!
-		</pre>
+		</pre
+			>
 
-		<p>
-			It's good to note that if you have a group <code>A</code> and an instance <code>a</code> of that group,
-			values
-			of type <code>is a</code> are assignable to names of type <code>A</code>. This may sound confusing, but it
-			just
-			means that if you have a function and name like so:
-		</p>
+			<p>
+				It's good to note that if you have a group <code>A</code> and an instance <code>a</code> of that group, values of type
+				<code>is a</code> are assignable to names of type <code>A</code>. This may sound confusing, but it just means that if you have a
+				function and name like so:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let print = function(text: Text) {
 				terminal.print(text);
 			};
 
 			let message: is "Hello world!" = "Hello world!";
-		</pre>
+		</pre
+			>
 
-		<p>
-			...then message's type is <code>is "Hello world!"</code>, and <code>"Hello world!"</code> is an instance of
-			<code>Text</code>, so it's valid to pass <code>message</code> as the parameter to <code>print</code>.
-		</p>
+			<p>
+				...then message's type is <code>is "Hello world!"</code>, and <code>"Hello world!"</code> is an instance of <code>Text</code>, so it's
+				valid to pass <code>message</code> as the parameter to <code>print</code>.
+			</p>
 
-		<hr />
+			<hr />
 
-		<h2 id="explicit-type-annotations">Explicit Type Annotations</h2>
+			<h2 id="explicit-type-annotations">Explicit Type Annotations</h2>
 
-		<p>
-			Now that we've talked about <code>editable</code> types, <code>is</code> types, and type inference, we can
-			finally fully explain type inference in Cabin. When you declare a <strong>non-editable</strong> name, Cabin
-			will
-			infer the type as the <code>is</code> type of the value. For example, if you declare a name as follows:
-		</p>
+			<p>
+				Now that we've talked about <code>editable</code> types, <code>is</code> types, and type inference, we can finally fully explain type
+				inference in Cabin. When you declare a <strong>non-editable</strong> name, Cabin will infer the type as the <code>is</code> type of
+				the value. For example, if you declare a name as follows:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let message = "Hello world!";
-		</pre>
+		</pre
+			>
 
-		<p>
-			The inferred type of the name is not actually <code>Text</code>, it's <code>is "Hello world!"</code>. This
-			provides as much information as possible at compile-time about the type of the name, and of course, it's
-			still assignable to parameters of type <code>Text</code>.
-		</p>
+			<p>
+				The inferred type of the name is not actually <code>Text</code>, it's <code>is "Hello world!"</code>. This provides as much
+				information as possible at compile-time about the type of the name, and of course, it's still assignable to parameters of type
+				<code>Text</code>.
+			</p>
 
-		<p>
-			As a matter of fact, when you declare a name with a non-editable type in Cabin, you <strong>are not allowed
-				to specify an explicit type.</strong> This is because the type is always the most strict and accurate
-			possible, which is the <code>is</code> value. In other words, for any declaration:
-		</p>
+			<p>
+				As a matter of fact, when you declare a name with a non-editable type in Cabin, you
+				<strong>are not allowed to specify an explicit type.</strong> This is because the type is always the most strict and accurate
+				possible, which is the <code>is</code> value. In other words, for any declaration:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let name = value;
-		</pre>
+		</pre
+			>
 
-		<p>
-			...the type of name will always be <code>is value</code>. Thus, specifying a type has no meaning here
-			&mdash; a type, by definition in Cabin, means "what kind of values can we assign to this name?" and for a
-			non-editable name, it's only the one value.
-		</p>
+			<p>
+				...the type of name will always be <code>is value</code>. Thus, specifying a type has no meaning here &mdash; a type, by definition in
+				Cabin, means "what kind of values can we assign to this name?" and for a non-editable name, it's only the one value.
+			</p>
 
-		<hr />
+			<hr />
 
-		<h2 id="convention-notes">Convention Notes</h2>
+			<h2 id="convention-notes">Convention Notes</h2>
 
-		<p>
-			In Cabin, all names are <i>references</i> to a value. This means that editing a name in one place will edit
-			its value elsewhere if it wasn't copied. For example:
-		</p>
+			<p>
+				In Cabin, all names are <i>references</i> to a value. This means that editing a name in one place will edit its value elsewhere if it
+				wasn't copied. For example:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let text: editable = "Hello world!";
 
 			let texts: editable = [];
@@ -502,13 +577,12 @@
 
 			text.append("!!!");
 			texts[1] // "Hello world!!!!"
-		</pre>
+		</pre
+			>
 
-		<p>
-			This also applies to function return values, i.e.,
-		</p>
+			<p>This also applies to function return values, i.e.,</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let generate = function(): Text {
 				let text = "Hello world!";
 				texts.append(text);
@@ -516,40 +590,39 @@
 			};
 
 			let generated_text = generate();
-		</pre>
+		</pre
+			>
 
-		<p>
-			In this case, <code>generated_text</code> is of type <code>Text</code>, not <code>editable Text</code>, and
-			it cannot be coerced into being <code>editable</code>. This makes sense, because we don't want to edit this
-			value, which <code>texts</code> expects to be unchanging. However, consider a case like this:
-		</p>
+			<p>
+				In this case, <code>generated_text</code> is of type <code>Text</code>, not <code>editable Text</code>, and it cannot be coerced into
+				being <code>editable</code>. This makes sense, because we don't want to edit this value, which <code>texts</code> expects to be
+				unchanging. However, consider a case like this:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let generate = function(): Text {
 				it is "Hello world!";
 			};
 
 			let generated_text = generate();
-		</pre>
+		</pre
+			>
 
-		<p>
-			Text literals, in Cabin, is equivalent to a <code>new Text</code> expression, so this returns a new variable
-			each time. We arent storing it anywhere, but the caller still can't edit it for the same reasons as before.
-			For this reason, it's convention to return an `editable` value whenever you're returning an unstored value:
-		</p>
+			<p>
+				Text literals, in Cabin, is equivalent to a <code>new Text</code> expression, so this returns a new variable each time. We arent
+				storing it anywhere, but the caller still can't edit it for the same reasons as before. For this reason, the compiler automatically
+				infers that your return type is <code>editable</code>, <i>only if it isn't being stored anywhere.</i> So, the above is inferred as
+				this:
+			</p>
 
-		<pre class="code" data-language="cabin">
+			<pre class="code" data-language="cabin">
 			let generate = function(): editable Text {
 				it is "Hello world!";
 			};
 
 			let generated_text = generate();
-		</pre>
-
-		<p>
-			The Cabin compiler is aware of this convention, and will give you a warning if you do not follow it.
-		</p>
-	</main>
-</body>
-
+		</pre
+			>
+		</main>
+	</body>
 </html>

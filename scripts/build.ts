@@ -8,10 +8,10 @@ import path from "node:path";
 console.log("Building Cabin Website...");
 
 console.log("\tCleaning output directory...");
-rmSync("./dist", { "recursive": true, "force": true });
+rmSync("./dist", { recursive: true, force: true });
 
 console.log("\tCopying source files...");
-cpSync("./src", "./dist/src", { "recursive": true });
+cpSync("./src", "./dist/src", { recursive: true });
 copyFileSync("./tsconfig.json", "./dist/tsconfig.json");
 copyFileSync("./index.html", "./dist/index.html");
 
@@ -20,7 +20,7 @@ spawnSync({
 	cmd: ["bunx", "tsc"],
 	cwd: "./dist",
 });
-rmSync("./dist/tsconfig.json")
+rmSync("./dist/tsconfig.json");
 
 console.log("\tRemoving TypeScript files, Fixing JavaScript & HTML imports");
 function walkDir(directoryPath: string, files: string[] = []): string[] {
@@ -38,25 +38,30 @@ function walkDir(directoryPath: string, files: string[] = []): string[] {
 
 for (let file of walkDir("./dist")) {
 	if (file.endsWith(".ts")) {
+		console.log(`\t\tRemoving TypeScript file ${file}`);
 		rmSync(file);
 		continue;
 	}
 
 	if (file.endsWith(".html")) {
+		console.log(`\t\tTransforming HTML file ${file}`);
 		let html = readFileSync(file, { encoding: "utf-8" });
-		let fixedHTML = new HTMLRewriter().on("script", {
-			element(element) {
-				let src = element.getAttribute("src")!;
-				if (src.endsWith(".ts")) {
-					element.setAttribute("src", `${src.substring(0, src.length - "ts".length)}js`);
-				}
-			}
-		}).transform(html);
+		let fixedHTML = new HTMLRewriter()
+			.on("script", {
+				element(element) {
+					let src = element.getAttribute("src")!;
+					if (src.endsWith(".ts")) {
+						element.setAttribute("src", `${src.substring(0, src.length - "ts".length)}js`);
+					}
+				},
+			})
+			.transform(html);
 		write(file, fixedHTML);
 		continue;
 	}
 
 	if (file.endsWith(".js")) {
+		console.log(`\t\tTransforming JavaScript file ${file}`);
 		let js = readFileSync(file, { encoding: "utf-8" });
 		let ast = acorn.parse(js, { ecmaVersion: "latest", sourceType: "module" });
 		acornWalk.simple(ast, {
@@ -68,7 +73,7 @@ for (let file of walkDir("./dist")) {
 				if (!importPath.endsWith(".js")) {
 					node.source.value = `${importPath}.js`;
 				}
-			}
+			},
 		});
 
 		let fixedJs = escodegen.generate(ast);
