@@ -125,3 +125,6 @@ $('.code').each((_index, element) => {
     });
     element.replaceWith(newElement);
 });
+$('*[data-import]').each((_index, element) => {
+    $(element).load(element.getAttribute('data-import'));
+});
