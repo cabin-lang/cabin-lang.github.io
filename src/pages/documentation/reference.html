@@ -17,7 +17,6 @@
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 			crossorigin="anonymous"
 		></script>
-		<script defer src="../../shared/code.ts" type="module"></script>
 		<script defer src="./shared_documentation.ts" type="module"></script>
 
 		<title>Reference | Cabin Documentation</title>
@@ -38,12 +37,20 @@
 
 			<h3>Number</h3>
 
-			<p>The <code>Number</code> group represents a real number.</p>
+			<p>
+				The
+				<code>Number</code>
+				group represents a real number.
+			</p>
 
 			<p>
 				If you never directly assign a decimal to a number and you never divide it, it will be stored as an
-				<code>int</code> under the hood. If you <i>do</i> divide it or assign a decimal to it, it will be stored as a <code>float</code> under
-				the hood.
+				<code>int</code>
+				under the hood. If you
+				<i>do</i>
+				divide it or assign a decimal to it, it will be stored as a
+				<code>float</code>
+				under the hood.
 			</p>
 
 			<p>
@@ -61,7 +68,11 @@
 		</pre
 			>
 
-			<p>Returns a list representing the range from the first number to the last number, <strong>including both ends</strong>. This is O(n).</p>
+			<p>
+				Returns a list representing the range from the first number to the last number,
+				<strong>including both ends</strong>
+				. This is O(n).
+			</p>
 
 			<p>Example Usage:</p>
 
@@ -158,24 +169,27 @@
 			>
 
 			<p>
-				Clears the terminal. This will perform a true clear with the VT100 escape code <code>\033c</code>
-				(<code>&lt;ESC&gt;c</code>), which will actually fully clear the screen, not just scroll it.
+				Clears the terminal. This will perform a true clear with the VT100 escape code
+				<code>\033c</code>
+				(
+				<code>&lt;ESC&gt;c</code>
+				), which will actually fully clear the screen, not just scroll it.
 			</p>
 
 			<p>Example Usage:</p>
 
 			<pre class="code" data-language="cabin">
-			terminal.print("Hello!");
-			terminal.print("Goodbye!");
-			terminal.clear();
-		</pre
+				terminal.print("Hello!");
+				terminal.print("Goodbye!");
+				terminal.clear();
+			</pre
 			>
 
 			<h5><code>execute</code></h5>
 
 			<pre class="code" data-language="cabin">
-			execute: action(command: Text): CommandOutput
-		</pre
+				execute: action(command: Text): CommandOutput
+			</pre
 			>
 
 			<p>
@@ -187,9 +201,9 @@
 			<p>Example Usage:</p>
 
 			<pre class="code" data-language="cabin">
-			let command_info = terminal.execute("ls -A1");
-			terminal.print(command_info.output);
-		</pre
+				let command_info = terminal.execute("ls -A1");
+				terminal.print(command_info.output);
+			</pre
 			>
 
 			<hr />
@@ -220,21 +234,26 @@
 				</tr>
 				<tr>
 					<td>foreach</td>
+					<td><a href="./control_flow.html#for-each-loops">For-Each Loops</a></td>
 				</tr>
 				<tr>
 					<td>group</td>
+					<td><a href="./groups.html#groups">Groups</a></td>
 				</tr>
 				<tr>
 					<td>if</td>
+					<td><a href="./control_flow.html#if-expressions">If Expressions</a></td>
 				</tr>
 				<tr>
 					<td>in</td>
+					<td><a href="./control_flow.html#for-each-loops">For-Each Loops</a></td>
 				</tr>
 				<tr>
 					<td>is</td>
 				</tr>
 				<tr>
 					<td>it</td>
+					<td><a href="./control_flow.html#blocks-labels-and-is-statements">Blocks, Labels, & Is-Statements</a></td>
 				</tr>
 				<tr>
 					<td>let</td>
@@ -304,6 +323,7 @@
 					| if_expression
 					| while_expression
 					| foreach_expression
+					| object_creation
 					| literal ;
 
 				(* Control Flow *)
@@ -325,6 +345,7 @@
 					"{" , { identifier , [ ":" , type ] , [ "=" , expression ] , "," } "}" ;
 				either_declaration = "either"
 					"{" , { expression } , "}"
+				object_creation = "new" , identifier , "{" { identifier , "=" , expression , "," } "}" ;
 		</pre
 			>
 		</main>

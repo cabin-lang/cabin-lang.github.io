@@ -30,7 +30,7 @@
 		<main>
 			<h1>Control Flow</h1>
 
-			<h2>Blocks, Labels, & <code>is</code> Statements</h2>
+			<h2 id="blocks-labels-and-is-statements">Blocks, Labels, & <code>is</code> Statements</h2>
 
 			<p>
 				A block is a sequence of statements inside curly braces. Blocks follow normal scoping rules, which means that names declared inside
@@ -38,15 +38,15 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let message = "Hello world!";
+				let message = "Hello world!";
 
-			{
-				let other_message = "Goodbye world!";
-				terminal.print(other_message);
-			};
+				{
+					let other_message = "Goodbye world!";
+					terminal.print(other_message);
+				};
 
-			// other_message is not accessible here!
-		</pre
+				// other_message is not accessible here!
+			</pre
 			>
 
 			<p>Unlike an <code>action</code>, blocks will run immediately without needing to be "called":</p>

@@ -2,3 +2,4 @@ tabWidth = 4
 useTabs = true
 printWidth = 150
 arrowParens = "avoid"
+htmlWhitespaceSensitivity = "ignore"
