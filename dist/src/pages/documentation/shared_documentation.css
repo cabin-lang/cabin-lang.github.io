@@ -42,8 +42,9 @@ main {
 	color: white;
 	position: fixed;
 	width: 20%;
-	height: 100vh;
+	height: calc(100vh - 4rem);
 	overflow-y: auto;
+	margin-top: 4rem;
 
 	a {
 		color: inherit;

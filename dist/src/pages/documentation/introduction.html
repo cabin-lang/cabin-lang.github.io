@@ -1,248 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<!-- Scripts necessary for using data-import -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script defer src="../../shared/code.js" type="module"></script>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Use shared head -->
+		<div data-import="/src/pages/documentation/head.html"></div>
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-		rel="stylesheet">
+		<!-- Page Title -->
+		<title>Introduction | Cabin Documentation</title>
+	</head>
 
-	<link href="../../shared/shared.css" rel="stylesheet" />
-	<link href="./shared_documentation.css" rel="stylesheet" />
+	<body>
+		<nav data-import="/src/shared/navbar.html"></nav>
+		<div data-import="/src/pages/documentation/sidebar.html"></div>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script defer src="../../shared/code.js" type="module"></script>
-	<script defer src="./shared_documentation.js" type="module"></script>
+		<main>
+			<h1 id="introduction">Introduction</h1>
 
-	<title>Introduction | Cabin Documentation</title>
-</head>
+			<p>Welcome to Cabin! Cabin is a general-purpose programming language centered around simplicity and developer experience.</p>
 
-<body>
-	<div data-import="/src/shared/navbar.html"></div>
-	<div data-import="/src/pages/documentation/sidebar.html"></div>
+			<hr />
 
-	<main>
-		<h1 id="introduction">Introduction</h1>
+			<h2 id="purpose-and-philosophy">Purpose & Philosophy</h2>
 
-		<p>
-			Welcome to Cabin! Cabin is a general-purpose programming language centered around simplicity and developer
-			experience.
-		</p>
+			<p>
+				It's not a stupid question to ask why Cabin exists. We have so many programming languages now covering every use case imaginable
+				&mdash; why do we need another competing standard?
+			</p>
 
-		<hr />
+			<p>
+				Cabin is specifically designed to fulfill the three S's:
+				<i><strong>simple, safe, speedy</strong></i>
+				. Cabin was created under the beliefs that very few, if any languages, succeed at excelling in all three of these values: Cabin is
+				designed to be safer than C, simpler than Rust, and faster than Go.
+			</p>
 
-		<h2 id="purpose-and-philosophy">Purpose & Philosophy</h2>
+			<p>
+				If you like these three values as a core for a programming language, but you don't like Cabin, consider checking out
+				<a href="https://vlang.io/">the V programming language</a>
+				.
+			</p>
 
-		<p>
-			It's not a stupid question to ask why Cabin exists. We have so many programming languages now covering every
-			use case imaginable &mdash; why do we need another competing standard?
-		</p>
+			<p>In short, Cabin's philosophy consists of the following ideals:</p>
 
-		<p>
-			Cabin is specifically designed to fulfill the three S's: <i><strong>simple, safe, speedy</strong></i>. Cabin
-			was created under the beliefs that very few, if any languages, succeed at excelling in all three of these
-			values: Cabin is designed to be safer than C, simpler than Rust, and faster than Go.
-		</p>
+			<ul>
+				<li>Stupidly obvious solutions are better than clever tricky ones.</li>
+				<li>The most common use case should be the default.</li>
+				<li>What can be done with existing syntax readably should be done with existing syntax.</li>
+				<li>Code should do what you expect it to from a cursory glance.</li>
+			</ul>
 
-		<p>
-			If you like these three values as a core for a programming language, but you don't like Cabin, consider
-			checking out <a href="https://vlang.io/">the V programming language</a>.
-		</p>
+			<p>Here's a few concrete ways Cabin implements these abstract philosophies:</p>
 
-		<p>
-			In short, Cabin's philosophy consists of the following ideals:
-		</p>
+			<ul>
+				<li>Cabin has extremely little syntax.</li>
+				<li>Strings are multiline and formatted by default.</li>
+				<li>All declarations share the same syntax.</li>
+				<li>
+					Cabin will
+					<i>never</i>
+					perform an implicit copy.
+				</li>
+			</ul>
 
-		<ul>
-			<li>Stupidly obvious solutions are better than clever tricky ones.</li>
-			<li>The most common use case should be the default.</li>
-			<li>What can be done with existing syntax readably should be done with existing syntax.</li>
-			<li>Code should do what you expect it to from a cursory glance.</li>
-		</ul>
+			<h2>Installation</h2>
 
-		<p>
-			Here's a few concrete ways Cabin implements these abstract philosophies:
-		</p>
+			<p>
+				You can install Cabin using the default method for your operating system as shown on
+				<a>the home page</a>
+				. For more detailed instructions, see below.
+			</p>
 
-		<ul>
-			<li>Cabin has extremely little syntax.</li>
-			<li>Strings are multiline and formatted by default.</li>
-			<li>All declarations share the same syntax.</li>
-			<li>Cabin will <i>never</i> perform an implicit copy.</li>
-		</ul>
+			<h3>Universal</h3>
 
-		<h2>Installation</h2>
+			<p>
+				Cabin is written in Rust, and minimally supported by all operating systems that support Cargo. You can install Cabin on any operating
+				system (that supports Cargo) by using Cargo:
+			</p>
 
-		<p>
-			You can install Cabin using the default method for your operating system as shown on <a>the home page</a>.
-			For more detailed instructions, see below.
-		</p>
+			<code>$ cargo install cabin-language</code>
 
-		<h3>Universal</h3>
+			<h3>Linux</h3>
 
-		<p>
-			Cabin is written in Rust, and minimally supported by all operating systems that support Cargo. You can
-			install Cabin on any operating system (that supports Cargo) by using Cargo:
-		</p>
+			<p>Cabin is available on the following Linux distributions and package managers:</p>
 
-		<code>
-			$ cargo install cabin-language
-		</code>
+			<table>
+				<tr>
+					<th>Distribution</th>
+					<th>Install Command</th>
+					<th>Package Name</th>
+					<th>Version</th>
+				</tr>
+				<tr>
+					<td>Arch (AUR)</td>
+					<td>yay -S cabin-language</td>
+					<td>cabin-language</td>
+					<td>0.1</td>
+				</tr>
+			</table>
 
-		<h3>Linux</h3>
+			<h3>Windows</h3>
 
-		<p>
-			Cabin is available on the following Linux distributions and package managers:
-		</p>
+			<p>For Windows installations, if you prefer not to use Cargo, you can download an exe installer for Cabin:</p>
 
-		<table>
-			<tr>
-				<th>Distribution</th>
-				<th>Install Command</th>
-				<th>Package Name</th>
-				<th>Version</th>
-			</tr>
-			<tr>
-				<td>Arch (AUR)</td>
-				<td>yay -S cabin-language</td>
-				<td>cabin-language</td>
-				<td>0.1</td>
-			</tr>
-		</table>
+			<h3>MacOS</h3>
 
-		<h3>Windows</h3>
+			<p>On MacOS, Cabin is available on Homebrew:</p>
 
-		<p>For Windows installations, if you prefer not to use Cargo, you can download an exe installer for Cabin:</p>
+			<code>$ brew install cabin-language</code>
 
-		<h3>MacOS</h3>
+			<h3>Testing</h3>
+			<p>
+				You can test if Cabin is installed by running
+				<code>cabin</code>
+				in the terminal. It should print a help and usage message about the Cabin compiler. If you get some sort of error or unrecognized
+				command, continue onto the troubleshooting section.
+			</p>
 
-		<p>
-			On MacOS, Cabin is available on Homebrew:
-		</p>
+			<h3>Troubleshooting</h3>
 
-		<code>
-			$ brew install cabin-language
-		</code>
+			<hr />
 
-		</h3>Testing</h3>
-		<p>
-			You can test if Cabin is installed by running <code>cabin</code> in the terminal. It should print a help and
-			usage message about the Cabin compiler. If you get some sort of error or unrecognized command, continue onto
-			the troubleshooting section.
-		</p>
+			<h2 id="your-first-program">Your First Program</h2>
 
-		<h3>Troubleshooting</h3>
+			<p>
+				Now that you've got Cabin installed, you're ready to get coding! Create a file ending in
+				<code>.cabin</code>
+				and add the following contents:
+			</p>
 
-		<hr />
-
-		<h2 id="your-first-program">Your First Program</h2>
-
-		<p>
-			Now that you've got Cabin installed, you're ready to get coding! Create a file ending in <code>.cabin</code>
-			and add the following contents:
-		</p>
-
-		<pre class="cabin-code">
+			<pre class="cabin-code">
 			run terminal.print("Hello world!");
-		</pre>
+		</pre
+			>
 
-		<p>
-			You're done! You've created your first Cabin program. You can run it and see it's output by running
-			<code>cabin run &lt;filename&gt;.cabin</code>:
-		</p>
+			<p>
+				You're done! You've created your first Cabin program. You can run it and see it's output by running
+				<code>cabin run &lt;filename&gt;.cabin</code>
+				:
+			</p>
 
-		<pre class="code" data-language="bash">
+			<pre class="code" data-language="bash">
 			$ cabin run script.cabin
 			Hello world!
 			$
-		</pre>
+		</pre
+			>
 
-		<hr />
+			<hr />
 
-		<h2 id="compiler-commands">Compiler Commands</h2>
+			<h2 id="compiler-commands">Compiler Commands</h2>
 
-		<p>
-			The Cabin compiler is designed to be simple but powerful, just like Cabin itself. There are just a few core
-			commands availble:
-		</p>
+			<p>The Cabin compiler is designed to be simple but powerful, just like Cabin itself. There are just a few core commands availble:</p>
 
-		<h3>The New Command</h3>
+			<h3 id="command-new">The New Command</h3>
 
-		<p>
-			The first command to know is <code>cabin new</code> It takes no positional arguments, and creates a new
-			Cabin <i>project</i>. A Cabin project comes with a <code>src/</code> directory with a
-			<code>main.cabin</code> file in it, containing the same hello world program you saw above. It also comes
-			with a <code>cabin.toml</code> file in the root of the project, which contains information about the
-			project, such as the name, dependencies, etc.
-		</p>
+			<p>
+				The first command to know is
+				<code>cabin new</code>
+				It takes no positional arguments, and creates a new Cabin
+				<i>project</i>
+				. A Cabin project comes with a
+				<code>src/</code>
+				directory with a
+				<code>main.cabin</code>
+				file in it, containing the same hello world program you saw above. It also comes with a
+				<code>cabin.toml</code>
+				file in the root of the project, which contains information about the project, such as the name, dependencies, etc.
+			</p>
 
-		<p>
-			<code>cabin new</code> isn't necessary to use Cabin. You can just as easily create a single Cabin file and
-			run it and build it. <code>cabin new</code> is designed for larger projects and public libraries, which need
-			a more structured approach to their code.
-		</p>
+			<p>
+				<code>cabin new</code>
+				isn't necessary to use Cabin. You can just as easily create a single Cabin file and run it and build it.
+				<code>cabin new</code>
+				is designed for larger projects and public libraries, which need a more structured approach to their code.
+			</p>
 
-		<h3>The Run Command</h3>
+			<h3 id="command-run">The Run Command</h3>
 
-		<p>
-			Hey, we've seen this one before! The <code>cabin run</code> command will run a single Cabin file or an
-			entire project. If you want to run a single Cabin file, you must specify the file to run, i.e.,
-			<code>cabin run hello_world.cabin</code>. However, in a project, if you're <code>cd</code>'d into the
-			project's directory, you can run the whole project with just <code>cabin run</code>. Your program will be
-			run with <code>src/main.cabin</code> as it's entry point, or a different entry point specified in
-			<code>cabin.toml</code> or at the command-line.
-		</p>
+			<p>
+				Hey, we've seen this one before! The
+				<code>cabin run</code>
+				command will run a single Cabin file or an entire project. If you want to run a single Cabin file, you must specify the file to run,
+				i.e.,
+				<code>cabin run hello_world.cabin</code>
+				. However, in a project, if you're
+				<code>cd</code>
+				'd into the project's directory, you can run the whole project with just
+				<code>cabin run</code>
+				. Your program will be run with
+				<code>src/main.cabin</code>
+				as it's entry point, or a different entry point specified in
+				<code>cabin.toml</code>
+				or at the command-line.
+			</p>
 
-		<hr />
+			<h3 id="command-build">The Build Command</h3>
 
-		<h2 id="project-configuration">Project Configuration</h2>
+			<p>
+				Another useful command is
+				<code>cabin build</code>
+				. It acts similarly to
+				<code>cabin run</code>
+				, except it outputs a permanent executable file, and doesn't run it automatically. This is typically used to deploy your product once
+				it's complete.
+				<code>cabin build</code>
+				follows the same entry point conventions as
+				<code>cabin run</code>
+				. The output will be placed in
+				<code>builds/</code>
+				.
+			</p>
 
-		<p>
-			Cabin projects come with a <code>cabin.toml</code> file in the root of the project. This file provides a
-			bunch of information to the compiler, such as project information and compilation flags. Below is an example
-			<code>cabin.toml</code> demonstrating all possible values for the configuration file:
-		</p>
+			<h3 id="command-format">The Format Command</h3>
 
-		<pre class="code" data-language="toml">
+			<p>
+				<code>cabin format</code>
+				will format your entire project, or a single file if given. Cabin's formatter is opinionated and does not take any configuration
+				options.
+			</p>
+
+			<h3 id="command-add">The Add Command</h3>
+
+			<p>
+				The
+				<code>cabin add</code>
+				command will add a dependency library to your project.
+			</p>
+
+			<h3 id="command-check">The Check Command</h3>
+
+			<p>
+				The
+				<code>cabin check</code>
+				command will lint a project or file. The default output is human-readable, which outputs pretty code snippets and colors that point
+				right at the errors. Other output formats, such as TOML, JSON, and YAML, are supported through flags.
+			</p>
+
+			<h3 id="command-convert">The Convert Command</h3>
+
+			<p>
+				Cabin can be transpiled to C. The
+				<code>cabin convert</code>
+				command does just that.
+			</p>
+
+			<hr />
+
+			<h2 id="project-configuration">Project Configuration</h2>
+
+			<p>
+				Cabin projects come with a
+				<code>cabin.toml</code>
+				file in the root of the project. This file provides a bunch of information to the compiler, such as project information and
+				compilation flags. Below is an example
+				<code>cabin.toml</code>
+				demonstrating all possible values for the configuration file:
+			</p>
+
+			<pre class="code" data-language="toml">
 			[information]
 			name = "example_project"
 
 			[options]
 			quiet = true
-		</pre>
+		</pre
+			>
 
-		<p>
-			We can go through the configuration options one-by-one:
-		</p>
+			<p>We can go through the configuration options one-by-one:</p>
 
-		<ul>
-			<li>
-				<code>[information]</code>
-				<ul>
-					<li>
-						<code>name [string]</code> - The name of the Cabin project. If you plan to upload this as a
-						public
-						library, this is the name that will be used to reference the project as a dependency.
-					</li>
-				</ul>
-			</li>
-			<li>
-				<code>[options]</code> - options and flags passed to the compiler
-				<ul>
-					<li>
-						<code>quiet [bool]</code> - Uses "quiet mode" for the compiler. This will prevent the compiler
-						from printing progress information during compilation.
-					</li>
-				</ul>
-			</li>
-		</ul>
-
-	</main>
-</body>
-
+			<ul>
+				<li>
+					<code>[information]</code>
+					<ul>
+						<li>
+							<code>name [string]</code>
+							- The name of the Cabin project. If you plan to upload this as a public library, this is the name that will be used to
+							reference the project as a dependency.
+						</li>
+					</ul>
+				</li>
+				<li>
+					<code>[options]</code>
+					- options and flags passed to the compiler
+					<ul>
+						<li>
+							<code>quiet [bool]</code>
+							- Uses "quiet mode" for the compiler. This will prevent the compiler from printing progress information during
+							compilation.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</main>
+	</body>
 </html>
