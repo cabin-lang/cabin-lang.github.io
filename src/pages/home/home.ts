@@ -26,7 +26,7 @@ function selectOs(os: Os): void {
 			break;
 		case "linux":
 			$(".linux-installation").removeClass("inactive");
-			$(".install-command").text("Sorry! Linux package managers are not yet supported :(");
+			$(".install-command").text("Sorry! Linux packages are not yet supported :(");
 			$(".install-command").css({ color: "lightcoral", fontFamily: "Nunito" });
 			break;
 		case "unknown":

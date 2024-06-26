@@ -70,9 +70,7 @@
 			>
 
 			<p>
-				Returns a list representing the range from the first number to the last number,
-				<strong>including both ends</strong>
-				. This is O(n).
+				Returns a list representing the range from the first number to the last number, <strong>including both ends</strong>. This is O(n).
 			</p>
 
 			<p>Example Usage:</p>
@@ -129,20 +127,18 @@
 			<h5><code>print</code></h5>
 
 			<pre class="code" data-language="cabin">
-			print: action(text: Text)
-		</pre
-			>
+				print: action(text: Text)
+			</pre>
 
-			<p>Writes to the standard output stream with a trailling newline. The standard output stream is flushed.</p>
+			<p>Writes to the standard output stream with a trailing newline. The standard output stream is flushed.</p>
 
 			<h5><code>print_error</code></h5>
 
 			<pre class="code" data-language="cabin">
 			print_error: action(text: Text)
-		</pre
-			>
+		</pre>
 
-			<p>Writes to the standard error stream with a trailling newline. The standard error stream is flushed.</p>
+			<p>Writes to the standard error stream with a trailing newline. The standard error stream is flushed.</p>
 
 			<h5><code>input</code></h5>
 
@@ -218,7 +214,7 @@
 				</tr>
 				<tr>
 					<td>action</td>
-					<td><a href="./actions.html#actions">Eithers</a></td>
+					<td><a href="./actions.html#actions">Actions</a></td>
 				</tr>
 				<tr>
 					<td>and</td>
@@ -302,6 +298,155 @@
 				</tr>
 			</table>
 
+			<hr />
+
+			<h2 id="optimization">Optimization</h2>
+
+			<p>
+				Cabin performs a number of behind-the-scenes optimizations to make your code run as fast as possible.
+			</p>
+
+			<h3>Memory management</h3>
+
+			<p>
+				Cabin doesn't have garbage collection, nor does it require any form of manual memory management. Cabin has it's own system for 
+				deciding when memory needs to be freed. Memory management comes down to ensuring two things: Memory that is needed doesn't get
+				freed, and memory that's not needed <i>does</i> get freed. Cabin breaks down lifetimes into three cases: Local variables, parameters,
+				and return values.
+			</p>
+
+			<h4>Case 1: Local Variables</h4>
+
+			<p>
+				The first case is local variables &mdash; a variable that's declared in some scope, and no references to it are created that live
+				longer than that scope. For example,
+			</p>
+
+			<pre class="code" data-language="cabin">
+				action {
+					let message = "Hello world!";
+					terminal.print(message);
+				};
+			</pre>
+
+			<p>
+				In this case, the "memory management" is trivial &mdash; The variable is cleaned up when the scope exits. The resulting C code is
+				almost identical to the original:
+			</p>
+
+			<pre class="code" data-language="c">
+				void function_0() {
+					char* message = "Hello world!";
+					printf("%s", message);
+				}
+			</pre>
+
+			<p>
+				(Cabin performs some other changes and conversions, but this is a simplified form of what the output would look like). This is just
+				a typical stack allocation, and C will clean it up for us at the end of the scope.
+			</p>
+
+			<h4>Case 2: Parameters</h4>
+
+			<p>
+				Sometimes, we need a local variable to live as long as a parameter. For example, consider this action that appends to a list:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				action(list: editable List&lt;Text&gt;) {
+					let x = "New item!";
+					list.append(x);
+				};
+			</pre>
+
+			<p>
+				Let's look at the resulting C code <strong>if there was no additional memory management done here:</strong>
+			</p>
+
+			<pre class="code" data-language="c">
+				void function_0(List* list) {
+					char* x = "New item!";
+					list->append(list, x);
+				};
+			</pre>
+
+			<p>
+				When this function ends, we get a dangling pointer! The <code>x</code> variable is allocated on the stack, and gets cleaned up when
+				the function returns. So, the compiler needs to perform some additional steps to make this valid. What Cabin does is convert the 
+				local variable into a parameter, and create it at the same time as the list. So, instead, the resulting code looks like this:
+			</p>
+
+			<pre class="code" data-language="c">
+				void function_0(List* list, char* x) {
+					list->append(list, x);
+				};
+
+				// At the call site
+				({
+					List* list = newList();
+					char* x = "New item!";
+					function_0(list, x);
+				});
+			</pre>
+
+			<h4>Case 3: Return values</h4>
+
+			<p>
+				Sometimes we need to return a pointer from a function's local variable. Consider this example:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				action: Text {
+					let message = "Hello world!";
+					it is message;
+				};
+			</pre>
+
+			<p>
+				The resulting C code would look like this:
+			</p>
+
+			<pre class="code" data-language="c">
+				char* function_0() {
+					char* message = "Hello world!";
+					return message;
+				};
+			</pre>
+
+			<p>
+				This is of course returning a dangling pointer. Cabin handles this by converting all return values into parameters, and replacing
+				return statements with assignments. The caller's side is updated as necessary:
+			</p>
+
+			<pre class="code" data-language="c">
+				void function_0(char** return_address) {
+					*return_address = "Hello world!";
+				};
+
+				// At the call site
+				char* message = ({
+					char* return_address;
+					function_0(&return_address);
+					return_address;
+				});
+			</pre>
+
+			<p>
+				This ensures that functions don't return dangling pointers.
+			</p>
+
+			<h3>Heap Allocations</h3>
+
+			<p>
+				Cabin only allocates on the heap in two situations: When using a <code>List</code>, and when using <code>terminal.input</code>. Heap
+				allocations are for when you don't know how much data is needed at compile-time. The return value of terminal.input is allocated on
+				the heap, because it is unknown how much data the user will enter. Lists are also heap allocated, because it is unknown (in the general
+				case) how much data they will need to hold. If the list has a compile-time known max size (as in not dependent on user input), it will
+				be allocated on the stack.
+			</p>
+			
+			<hr />
+
 			<h2 id="formal-grammar">Formal Grammar</h2>
 
 			Cabin is designed to be as simple as possible, so it's formal grammar is tiny compared to most other languages. Below is the formal
@@ -360,8 +505,7 @@
 				either_declaration = "either"
 					"{" , { expression } , "}"
 				object_creation = "new" , identifier , "{" { identifier , "=" , expression , "," } "}" ;
-		</pre
-			>
+		</pre>
 		</main>
 	</body>
 </html>
