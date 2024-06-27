@@ -10,12 +10,24 @@ const languages = {
         operator: /^([\*\!\+\-\/\.\{\}\(\);:=\|\[\],<>]+)/,
         whitespace: /^([\s\r\n\t ]+)/
     },
+    c: {
+        keyword: /^\b(void|char|return)\b/,
+        number: /^(-?\d+(\.\d+)?)/,
+        string: /^("[^"]+")/m,
+        function: /^([a-z_]\w*)(\(|<)/,
+        identifier: /^([a-z_]\w*)/,
+        type: /^([A-Z_]\w*)/,
+        comment: /^(\/\/[^\r\n]+)/,
+        operator: /^([&\*\!\+\-\/\.\{\}\(\);:=\|\[\],<>]+)/,
+        whitespace: /^([\s\r\n\t ]+)/
+    },
     toml: {
         number: /^(-?\d+(\.\d+)?)/,
         boolean: /^(true|false)/,
         string: /^("[^"]+")/,
         whitespace: /^([\s\r\n\t ]+)/,
         comment: /^(#[^\r\n]+)/,
+        heading: /^(\w+)\]/,
         identifier: /^([a-z_]\w*)/,
         operator: /^([\.\{\}\(\);:=\|\[\],<>]+)/
     },
@@ -46,6 +58,17 @@ export const onedark = {
         comment: '#888888',
         whitespace: 'white'
     },
+    c: {
+        type: '#E5C07B',
+        identifier: '#E06C75',
+        string: '#98C379',
+        operator: 'lightgray',
+        function: '#61AFEF',
+        keyword: '#C678DD',
+        number: '#D19A66',
+        comment: '#888888',
+        whitespace: 'white'
+    },
     toml: {
         boolean: '#D19A66',
         identifier: '#E06C75',
@@ -53,6 +76,7 @@ export const onedark = {
         operator: 'lightgray',
         number: '#D19A66',
         comment: '#888888',
+        heading: '#E5C07B',
         whitespace: 'white'
     },
     bash: {
@@ -105,7 +129,7 @@ function unindent(text) {
     return lines.map(line => line.substring(max_indent)).join('\n');
 }
 export function syntaxHighlight(code, language, theme) {
-    let tokens = tokenize(unindent(code).replaceAll(/&lt;/g, '<').replaceAll(/&gt;/g, '>'), languages[language]);
+    let tokens = tokenize(unindent(code).replaceAll(/&lt;/g, '<').replaceAll(/&gt;/g, '>').replaceAll(/&amp;/g, '&'), languages[language]);
     let parent = document.createElement('pre');
     parent.classList.add('code');
     tokens.forEach(token => {

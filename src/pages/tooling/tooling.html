@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Scripts necessary for using data-import -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script defer src="../../shared/code.js" type="module"></script>
+
+		<!-- Use shared head -->
+		<div data-import="/src/pages/documentation/head.html"></div>
+		<link rel="stylesheet" href="./tooling.css" />
+
+		<!-- Page Title -->
+		<title>Cabin | Tooling</title>
+	</head>
+
+	<body>
+		<nav data-import="/src/shared/navbar.html"></nav>
+
+		<main>
+			<h1>Tooling</h1>
+
+			<p>
+				In addition to the compiler itself, there are also a number of helpful tools to assist in Cabin development, such as the
+				formatter, editor extensions, the language server, and more. Here, you can find all of the available tools for writing
+				Cabin code.
+			</p>
+
+			<hr />
+
+			<h2>Language Server</h2>
+
+			<p>
+				A <strong>language server</strong> provides diagnostics about your code &mdash; errors, warnings, suggestions, etc., as well as providing capabilities
+				for code navigation, such as "go to definition", "go to type definition", etc. All of the ways that editors interact with your code in a way that feels
+				like they <i>understand</i> the code is achieved through the language server protocol. The protocol defines a specific format to send and receive data in.
+				Then, the system has two halves &mdash; the language server and language client. Both implement their sides of the protocol. The client would be your editor,
+				something like Visual Studio Code or Neovim. The server is the Cabin language server tool. You perform an action in your editor, such as control-clicking for
+				"go to definition"; Then, the editor (language client) formats this data as the protocol expects it and sends the request to the language server. The language
+				server reads data according to the protocol format, and responds with the relevant information (the definition to jump to) also using the protocol.
+			</p>
+
+			<p>
+				Before the days of LSP, every language needed a specialized plugin or extension for every editor to work properly, and developers would have to learn the
+				specific API of each and every editor to integrate with. What you're left with is many editors missing support for many languages, and incomplete parity
+				between extensions of different editors. the language server protocol creates a universal standard that most editors implement, allowing one tool to be written
+				providing language support for all editors. If your editor shows errors and warnings, it most likely uses the language server protocol.
+			</p>
+
+			<p>
+				Cabin has a Language Server Protocol (LSP) implementation. Cabin's LSP is unique in that it doesn't actually provide extra diagnostics &mdash;
+				the compiler already provides sufficiently thorough diagnostics; The LSP simply acts as an adapter to read compiler diagnostics and convert the
+				result into the format expected by the protocol. You can install the language server as a standalone CLI tool, but most likely you should just install the extension
+				for your specific editor, which will handle the installation and setup for you. To do so, continue below to your text editor. If you prefer the standalone CLI tool
+				application, refer to the installation below.
+			</p>
+
+			<hr />
+
+			<h2>Editor Plugins</h2>
+
+			<p>
+				Cabin has extensions and support for most major editors, including Visual Studio Code, Vim/Neovim, Emacs, and more.
+			</p>
+
+			<h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png?20210804221519"></img>Visual Studio Code</h3>
+
+			<p>
+				There's a Visual studio code extension for the Cabin programming language. The extension features semantic
+				highlighting, language server protocol support including diagnostics, go to definition, etc., auto-formatting, and more.
+			</p>
+
+			<h3><img src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/nvim-icon.png"></img>Neovim</h3>
+
+			<p>
+				There is both a Vim plugin for Cabin and a Neovim plugin. While the Vim plugin works sufficiently well, the
+				Neovim plugin takes advantage of Neovim's more advanced feature set and APIs, and if you're using Neovim, it is recommended to use the
+				Neovim plugin over the standard Vim plugin.
+			</p>
+
+			<h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vimlogo.svg/1022px-Vimlogo.svg.png"></img>Vim</h3>
+
+			<h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EmacsIcon.svg/2048px-EmacsIcon.svg.png"></img>Emacs</h3>
+
+			<h3><img src="https://zed.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fapp-logo.181f0a1a.png&w=640&q=75"></img>Zed</h3>
+
+			<p>
+				Zed is a relatively new editor compared to some other editors, and the plugin API is not quite as mature.
+				Nonetheless, a Cabin extension exists providing similar features to the extensions for other editors, it may just be slightly less mature or
+				robust currently.
+			</p>
+		</main>
+	</body>
+</html>
