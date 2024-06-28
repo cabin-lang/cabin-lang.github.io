@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Scripts necessary for using data-import -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script defer src="/src/shared/code.js" type="module"></script>
 
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+		<!-- Use shared head -->
+		<div data-import="/src/pages/documentation/head.html"></div>
 
-		<link href="../../shared/shared.css" rel="stylesheet" />
-		<link href="./shared_documentation.css" rel="stylesheet" />
-
-		<script
-			src="https://code.jquery.com/jquery-3.7.1.min.js"
-			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-			crossorigin="anonymous"
-		></script>
-		<script defer src="../../shared/code.js" type="module"></script>
-		<script defer src="./shared_documentation.js" type="module"></script>
-
+		<!-- Page Title -->
 		<title>Declarations | Cabin Documentation</title>
 	</head>
 
@@ -28,9 +17,9 @@
 		<div data-import="/src/pages/documentation/sidebar.html"></div>
 
 		<main>
-			<h1>Declarations</h1>
+			<h1 id="declarations">Declarations</h1>
 
-			<h2>Names</h2>
+			<h2 id="names">Names</h2>
 
 			<p>
 				In Cabin, we call variables <i>names</i>. This is because names are often unchanging, and therefore by definition, not variable. Names
@@ -38,16 +27,16 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let message = "Hello world!";
-		</pre
+				let message = "Hello world!";
+			</pre
 			>
 
 			<p>Names always <i>reference</i> a value. Two names can reference the same value!</p>
 
 			<pre class="code" data-language="cabin">
-			let message = "Hello world!";
-			let message2 = message;
-		</pre
+				let message = "Hello world!";
+				let message2 = message;
+			</pre
 			>
 
 			<p>
@@ -57,11 +46,11 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let message = "Hello world!";
-			let message2 = message; // This isn't valid!
-			let message3 = message.copy(); // This IS valid!
-			let message4 = message.reference(); // This is also valid!
-		</pre
+				let message = "Hello world!";
+				let message2 = message; // This isn't valid!
+				let message3 = message.copy(); // This IS valid!
+				let message4 = message.reference(); // This is also valid!
+			</pre
 			>
 
 			<p>

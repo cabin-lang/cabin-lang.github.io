@@ -46,52 +46,54 @@ const languages = {
         whitespace: /^([\s\r\n\t ]+)/
     }
 };
-export const onedark = {
-    cabin: {
-        group: '#E5C07B',
-        identifier: '#E06C75',
-        string: '#98C379',
-        operator: 'lightgray',
-        function: '#61AFEF',
-        keyword: '#C678DD',
-        number: '#D19A66',
-        comment: '#888888',
-        whitespace: 'white'
-    },
-    c: {
-        type: '#E5C07B',
-        identifier: '#E06C75',
-        string: '#98C379',
-        operator: 'lightgray',
-        function: '#61AFEF',
-        keyword: '#C678DD',
-        number: '#D19A66',
-        comment: '#888888',
-        whitespace: 'white'
-    },
-    toml: {
-        boolean: '#D19A66',
-        identifier: '#E06C75',
-        string: '#98C379',
-        operator: 'lightgray',
-        number: '#D19A66',
-        comment: '#888888',
-        heading: '#E5C07B',
-        whitespace: 'white'
-    },
-    bash: {
-        whitespace: 'white',
-        identifier: 'white',
-        prompt: '#888888',
-        flag: '#888888'
-    },
-    ebnf: {
-        rule: '#E5C07B',
-        identifier: '#E06C75',
-        string: '#C678DD',
-        operator: 'lightgray',
-        comment: '#888888',
-        whitespace: 'white'
+const themes = {
+    onedark: {
+        cabin: {
+            group: '#E5C07B',
+            identifier: '#E06C75',
+            string: '#98C379',
+            operator: 'lightgray',
+            function: '#61AFEF',
+            keyword: '#C678DD',
+            number: '#D19A66',
+            comment: '#888888',
+            whitespace: 'white'
+        },
+        c: {
+            type: '#E5C07B',
+            identifier: '#E06C75',
+            string: '#98C379',
+            operator: 'lightgray',
+            function: '#61AFEF',
+            keyword: '#C678DD',
+            number: '#D19A66',
+            comment: '#888888',
+            whitespace: 'white'
+        },
+        toml: {
+            boolean: '#D19A66',
+            identifier: '#E06C75',
+            string: '#98C379',
+            operator: 'lightgray',
+            number: '#D19A66',
+            comment: '#888888',
+            heading: '#E5C07B',
+            whitespace: 'white'
+        },
+        bash: {
+            whitespace: 'white',
+            identifier: 'white',
+            prompt: '#888888',
+            flag: '#888888'
+        },
+        ebnf: {
+            rule: '#E5C07B',
+            identifier: '#E06C75',
+            string: '#C678DD',
+            operator: 'lightgray',
+            comment: '#888888',
+            whitespace: 'white'
+        }
     }
 };
 function tokenize(code, language) {
@@ -141,9 +143,11 @@ export function syntaxHighlight(code, language, theme) {
     });
     return parent;
 }
+const currentTheme = localStorage.getItem('theme') ?? 'onedark';
+localStorage.setItem('theme', 'onedark');
 $('.code').each((_index, element) => {
     let code_language = $(element).attr('data-language') ?? 'cabin';
-    let newElement = syntaxHighlight(element.innerHTML, code_language, onedark);
+    let newElement = syntaxHighlight(element.innerHTML, code_language, themes[currentTheme]);
     Object.entries(element.attributes).forEach(([_index, value]) => {
         newElement.setAttribute(value.name, value.nodeValue ?? 'true');
     });

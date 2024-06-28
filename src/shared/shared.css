@@ -1,3 +1,8 @@
+::root {
+	--primary-background: #393d50;
+	--code-background: #282c34;
+}
+
 * {
 	margin: 0px;
 	padding: 0px;
