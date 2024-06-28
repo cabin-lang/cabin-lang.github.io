@@ -28,7 +28,7 @@
 		<div data-import="/src/pages/documentation/sidebar.html"></div>
 
 		<main>
-			<h1>Control Flow</h1>
+			<h1 id="control-flow">Control Flow</h1>
 
 			<h2 id="blocks-labels-and-is-statements">Blocks, Labels, & <code>is</code> Statements</h2>
 
@@ -52,20 +52,20 @@
 			<p>Unlike an <code>action</code>, blocks will run immediately without needing to be "called":</p>
 
 			<pre class="code" data-language="cabin">
-			let message = "hello world!";
+				let message = "hello world!";
 
-			// the code in here will not be executed immediately
-			action {
-				let other_message = "goodbye world!";
-				terminal.print(other_message);
-			};
+				// the code in here will not be executed immediately
+				action {
+					let other_message = "goodbye world!";
+					terminal.print(other_message);
+				};
 
-			// the code in here will be executed immediately
-			{
-				let other_message = "good morning world!";
-				terminal.print(other_message);
-			};
-		</pre
+				// the code in here will be executed immediately
+				{
+					let other_message = "good morning world!";
+					terminal.print(other_message);
+				};
+			</pre
 			>
 
 			<p>Blocks can be used as expressions, too! the <code>is</code> keyword can be used to</p>
@@ -76,12 +76,12 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let centimeters = {
-				let feet = yards / 3;
-				let inches = feet * 12;
-				centimeters is inches * 2.54;
-			};
-		</pre
+				let centimeters = {
+					let feet = yards / 3;
+					let inches = feet * 12;
+					centimeters is inches * 2.54;
+				};
+			</pre
 			>
 
 			<p>
@@ -104,12 +104,12 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let centimeters = if data.unit != "centimeters" { 
-				it is data.value.to_cm();
-			} otherwise { 
-				it is data.value;
-			};
-		</pre
+				let centimeters = if data.unit != "centimeters" { 
+					it is data.value.to_cm();
+				} otherwise { 
+					it is data.value;
+				};
+			</pre
 			>
 
 			<p>
@@ -138,13 +138,13 @@
 
 			<hr />
 
-			<h2>For-Each Loops</h2>
+			<h2 id="for-each-loops">For-Each Loops</h2>
 
 			<pre class="code" data-language="cabin">
-			foreach fruit in ["apple", "orange", "banana"] {
-				terminal.print(fruit);
-			};
-		</pre
+				foreach fruit in ["apple", "orange", "banana"] {
+					terminal.print(fruit);
+				};
+			</pre
 			>
 
 			<p>To loop over a range in a more traditional sense, you can use the <code>to</code> function on <code>Number</code>:</p>
@@ -162,37 +162,37 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let png = foreach image in images {
-				if image.extension = "png" {
-					png is image;
+				let png = foreach image in images {
+					if image.extension = "png" {
+						png is image;
+					};
 				};
-			};
-		</pre
+			</pre
 			>
 
 			<hr />
 
-			<h2>While Loops</h2>
+			<h2 id="while-loops">While Loops</h2>
 
 			<p><code>while</code> loops execute code while a condition is true:</p>
 
 			<pre class="code" data-language="cabin">
-			while run terminal.input() != "yes" {
-				terminal.print("Please enter yes: ");
-			}
-		</pre
+				while run terminal.input() != "yes" {
+					terminal.print("Please enter yes: ");
+				}
+			</pre
 			>
 
 			<p>Like for-each loops, you can use <code>while</code> loops as expressions:</p>
 
 			<pre class="code" data-language="cabin">
-			let inputted_number = while true {
-				match (run terminal.input()).as_number() {
-					number: Number => { inputted_number is number; },
-					error: Error => { terminal.print("Invalid number. Try again."); }
-				};
-			}
-		</pre
+				let inputted_number = while true {
+					match (run terminal.input()).as_number() {
+						number: Number => { inputted_number is number; },
+						error: Error => { terminal.print("Invalid number. Try again."); }
+					};
+				}
+			</pre
 			>
 		</main>
 	</body>

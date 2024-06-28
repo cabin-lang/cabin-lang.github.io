@@ -86,20 +86,60 @@ nav {
 }
 
 .page-settings {
-	display: none;
 	position: absolute;
 	z-index: 2;
-	top: 0px;
-	right: 0px;
+	top: 5rem;
+	right: 1rem;
 	color: white;
 	background-color: #282c34;
 	padding: 2rem;
+	padding-top: 1.5rem;
 	border-radius: 1rem;
 	box-shadow: 0px 0px 20px black;
-	top: 4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 25rem;
 
 	h1 {
 		font-size: 2rem;
+	}
+
+	h2 {
+		font-size: 1.5rem;
+	}
+
+	button {
+		width: 6rem;
+		height: 4rem;
+		border-radius: 0.5rem;
+		transition: scale 0.25s;
+		background-size: cover;
+		background-position: center;
+		box-shadow: 0px 0px 10px black;
+
+		&:hover {
+			scale: 1.1;
+		}
+	}
+
+	.one-dark {
+		background-image: url("https://www.color-hex.com/palettes/1017619.png");
+	}
+
+	.page-dark {
+		background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiiofjLUMouDq3GqzcA9q03Vo-dCLPA6hq3w&s");
+	}
+
+	&::before {
+		content: "";
+		width: 1.5rem;
+		height: 1.5rem;
+		background: #282c34;
+		position: absolute;
+		top: -0.4rem;
+		right: 0.2rem;
+		rotate: 45deg;
 	}
 }
 
