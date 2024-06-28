@@ -380,7 +380,7 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let get_message_type = function {
+			let get_message_type = action {
 				it is Text;
 			};
 
@@ -391,7 +391,7 @@
 			<p>
 				In this case, the type of the name "message" is the return value of calling <code>get_message_type()</code>.
 				<code>get_message_type()</code> can be evaluated fully at compile-time, so it gets called and returns <code>Text</code>. In order to
-				use a function call as a type like this, it <i>must</i> be fully evaluable at compile-time!
+				use a call as a type like this, it <i>must</i> be fully evaluable at compile-time!
 			</p>
 
 			<hr />
@@ -463,7 +463,7 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let print = function(text: Text) {
+			let print = action(text: Text) {
 				terminal.print(text);
 			};
 
@@ -504,8 +504,8 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let name = value;
-		</pre
+				let name = value;
+			</pre
 			>
 
 			<p>
@@ -515,7 +515,9 @@
 
 			<hr />
 
-			<h2 id="convention-notes">Convention Notes</h2>
+			<h2 id="convention-notes">Inferred Editable</h2>
+
+			<p>There is exactly one case where Cabin will automatically infer a value as <code>editable</code>. This case is described here.</p>
 
 			<p>
 				In Cabin, all names are <i>references</i> to a value. This means that editing a name in one place will edit its value elsewhere if it
@@ -523,27 +525,27 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let text: editable = "Hello world!";
+				let text: editable = "Hello world!";
 
-			let texts: editable = [];
-			texts.append(text);
+				let texts: editable = [];
+				texts.append(text);
 
-			text.append("!!!");
-			texts[1] // "Hello world!!!!"
-		</pre
+				text.append("!!!");
+				texts[1] // "Hello world!!!!"
+			</pre
 			>
 
 			<p>This also applies to function return values, i.e.,</p>
 
 			<pre class="code" data-language="cabin">
-			let generate = function(): Text {
-				let text = "Hello world!";
-				texts.append(text);
-				it is text;
-			};
+				let generate = action: Text {
+					let text = "Hello world!";
+					texts.append(text);
+					it is text;
+				};
 
-			let generated_text = generate();
-		</pre
+				let generated_text = generate();
+			</pre
 			>
 
 			<p>
@@ -553,7 +555,7 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let generate = function(): Text {
+			let generate = action: Text {
 				it is "Hello world!";
 			};
 
@@ -569,7 +571,7 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let generate = function(): editable Text {
+			let generate = action: editable Text {
 				it is "Hello world!";
 			};
 

@@ -52,54 +52,56 @@ const languages = {
 } as const satisfies { [key: string]: Language };
 
 /** The OneDark theme from Atom. */
-export const onedark: Theme = {
-	cabin: {
-		group: "#E5C07B",
-		identifier: "#E06C75",
-		string: "#98C379",
-		operator: "lightgray",
-		function: "#61AFEF",
-		keyword: "#C678DD",
-		number: "#D19A66",
-		comment: "#888888",
-		whitespace: "white",
+const themes = {
+	onedark: {
+		cabin: {
+			group: "#E5C07B",
+			identifier: "#E06C75",
+			string: "#98C379",
+			operator: "lightgray",
+			function: "#61AFEF",
+			keyword: "#C678DD",
+			number: "#D19A66",
+			comment: "#888888",
+			whitespace: "white",
+		},
+		c: {
+			type: "#E5C07B",
+			identifier: "#E06C75",
+			string: "#98C379",
+			operator: "lightgray",
+			function: "#61AFEF",
+			keyword: "#C678DD",
+			number: "#D19A66",
+			comment: "#888888",
+			whitespace: "white",
+		},
+		toml: {
+			boolean: "#D19A66",
+			identifier: "#E06C75",
+			string: "#98C379",
+			operator: "lightgray",
+			number: "#D19A66",
+			comment: "#888888",
+			heading: "#E5C07B",
+			whitespace: "white",
+		},
+		bash: {
+			whitespace: "white",
+			identifier: "white",
+			prompt: "#888888",
+			flag: "#888888",
+		},
+		ebnf: {
+			rule: "#E5C07B",
+			identifier: "#E06C75",
+			string: "#C678DD",
+			operator: "lightgray",
+			comment: "#888888",
+			whitespace: "white",
+		},
 	},
-	c: {
-		type: "#E5C07B",
-		identifier: "#E06C75",
-		string: "#98C379",
-		operator: "lightgray",
-		function: "#61AFEF",
-		keyword: "#C678DD",
-		number: "#D19A66",
-		comment: "#888888",
-		whitespace: "white",
-	},
-	toml: {
-		boolean: "#D19A66",
-		identifier: "#E06C75",
-		string: "#98C379",
-		operator: "lightgray",
-		number: "#D19A66",
-		comment: "#888888",
-		heading: "#E5C07B",
-		whitespace: "white",
-	},
-	bash: {
-		whitespace: "white",
-		identifier: "white",
-		prompt: "#888888",
-		flag: "#888888",
-	},
-	ebnf: {
-		rule: "#E5C07B",
-		identifier: "#E06C75",
-		string: "#C678DD",
-		operator: "lightgray",
-		comment: "#888888",
-		whitespace: "white",
-	},
-};
+} as const satisfies { [key: string]: Theme };
 
 /**
  * A theme for programming language syntax highlighting. A theme must provide a color for all token types of all languages.
@@ -219,10 +221,13 @@ export function syntaxHighlight(code: string, language: keyof typeof languages, 
 	return parent;
 }
 
+const currentTheme = (localStorage.getItem("theme") as keyof typeof themes) ?? "onedark";
+localStorage.setItem("theme", "onedark");
+
 // Syntax highlight all .code elements
 $(".code").each((_index, element) => {
 	let code_language = ($(element).attr("data-language") ?? "cabin") as keyof typeof languages;
-	let newElement = syntaxHighlight(element.innerHTML, code_language, onedark);
+	let newElement = syntaxHighlight(element.innerHTML, code_language, themes[currentTheme]);
 	Object.entries(element.attributes).forEach(([_index, value]) => {
 		newElement.setAttribute(value.name, value.nodeValue ?? "true");
 	});
