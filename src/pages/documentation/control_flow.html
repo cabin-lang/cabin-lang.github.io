@@ -30,7 +30,7 @@
 		<main>
 			<h1 id="control-flow">Control Flow</h1>
 
-			<h2 id="blocks-labels-and-is-statements">Blocks, Labels, & <code>is</code> Statements</h2>
+			<h2 id="blocks-labels-and-is-statements">Blocks, Labels, & is-Statements</h2>
 
 			<p>
 				A block is a sequence of statements inside curly braces. Blocks follow normal scoping rules, which means that names declared inside
@@ -65,13 +65,36 @@
 					let other_message = "good morning world!";
 					terminal.print(other_message);
 				};
-			</pre
-			>
-
-			<p>Blocks can be used as expressions, too! the <code>is</code> keyword can be used to</p>
+			</pre>
 
 			<p>
-				The syntax for an <code>is</code> expression is <code>&lt;label&gt; is &lt;expression&gt;</code>. For example, we can use the
+				Blocks can have <strong>labels</strong>. A label is just a name for a block. Labels are identifiers that end in a colon. For example:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				label: {
+					terminal.print("Hello world!");
+				};
+			</pre>
+
+			<p>
+				In this case, the block is labelled "label". Note that there cannot be a space in between the label name and the colon; They are one single token.
+				In the case that we assign a block to a name, the block is implicitly labelled as that name. For example, in this block of code:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let value = {
+					// ...
+				};
+			</pre>
+
+			<p>
+				This block is automatically labelled "value" because that's what it's being assigned to. So, blocks can be used as expressions, too! 
+				The <code>is</code> keyword can be used to exit a block and return a value from it.
+			</p>
+
+			<p>
+				The syntax for an <code>is</code> statement is <code>&lt;label&gt; is &lt;expression&gt;</code>. For example, we can use the
 				declaration-label rule to return a value from a block like so:
 			</p>
 
@@ -81,8 +104,7 @@
 					let inches = feet * 12;
 					centimeters is inches * 2.54;
 				};
-			</pre
-			>
+			</pre>
 
 			<p>
 				Cabin actually provides an easier way of doing this &mdash; the <code>it</code> keyword is a general label that refers to "the current
@@ -90,13 +112,12 @@
 			</p>
 
 			<pre class="code" data-language="cabin">
-			let centimeters = {
-				let feet = yards / 3;
-				let inches = feet * 12;
-				it is inches * 2.54;
-			};
-		</pre
-			>
+				let centimeters = {
+					let feet = yards / 3;
+					let inches = feet * 12;
+					it is inches * 2.54;
+				};
+			</pre>
 
 			<p>
 				The <code>it</code> keyword is common for all kinds of expressions, such as using <code>if</code>
@@ -135,6 +156,36 @@
 				<code>if</code> expression, not the outer block itself, so we can use the <code>centimeters</code>
 				label explicitly.
 			</p>
+
+			<hr />
+
+			<h2 id="if-expressions">If-Expressions</h2>
+
+			<p>
+				If-expressions are used to conditionally run code based on whether a certain condition is true:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let user_agrees = run terminal.input();
+
+				if user_agrees = "yes" {
+					terminal.print("Proceeding!");
+				} otherwise {
+					terminal.print("Aborting!");
+				};
+			</pre>
+
+			<p>
+				Just like blocks, if-expressions can be used as expressions:
+			</p>
+
+			<pre class="code" data-language="cabin">
+				let drink = if user.is_of_age {
+					it is "alcohol";
+				} otherwise {
+					it is "soda";
+				};
+			</pre>
 
 			<hr />
 

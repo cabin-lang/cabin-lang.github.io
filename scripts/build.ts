@@ -82,4 +82,4 @@ for (let file of walkDir("./dist")) {
 	}
 }
 
-console.log("Build complete!");
+console.log("Build complete!\n");
